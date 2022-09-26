@@ -1,9 +1,7 @@
 package com.codingtest.practice.prac202209;
 
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class AthleticCompetition {
 
@@ -53,10 +51,20 @@ public class AthleticCompetition {
         //MAP value로 내림차순 정렬
         List<HashMap<Integer,Integer>> sortedMapList = new ArrayList<>();
         for(int i=0; i<studentScoreList.size(); i++) {
-            List<Entry<Integer,Integer>> tempEntryList = new ArrayList<Entry<Integer,Integer>>(studentScoreList.get(i).entrySet());
+            Map<Integer, Integer> beforeSortMap = studentScoreList.get(i);
+            List<Integer> keySet = new ArrayList<>(beforeSortMap.keySet());
+            Collections.sort(keySet, (value1, value2) -> (beforeSortMap.get(value2).compareTo(beforeSortMap.get(value1))));
 
 
+            HashMap<Integer, Integer> tempMap = new HashMap<>();
+            for(Integer key : keySet) {
+                System.out.println("key: "+key+",value: "+beforeSortMap.get(key));
+            }
+            System.out.println();
+            sortedMapList.add(tempMap);
         }
+
+        System.out.println("정렬후 List뽑아보기:"+sortedMapList.toString());
 
         //종목수만큼 짜르기(꼭 안해도될 비교하지않게)
         //배열자르기
