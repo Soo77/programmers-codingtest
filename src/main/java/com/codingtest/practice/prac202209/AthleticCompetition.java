@@ -57,14 +57,21 @@ public class AthleticCompetition {
 
 
             HashMap<Integer, Integer> tempMap = new HashMap<>();
+            int tempCnt= 0 ;
             for(Integer key : keySet) {
+                if(tempCnt < cutLen){
+                    tempMap.put(key,beforeSortMap.get(key));
+                }
+                tempCnt++;
                 System.out.println("key: "+key+",value: "+beforeSortMap.get(key));
             }
             System.out.println();
             sortedMapList.add(tempMap);
         }
 
+        //220928 정렬후 최소한의 숫자로 잘라서 Hashmap에 넣고 List로 만들었다.
         System.out.println("정렬후 List뽑아보기:"+sortedMapList.toString());
+
 
         //종목수만큼 짜르기(꼭 안해도될 비교하지않게)
         //배열자르기
