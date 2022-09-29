@@ -72,6 +72,9 @@ public class AthleticCompetition {
         //220928 정렬후 최소한의 숫자로 잘라서 Hashmap에 넣고 List로 만들었다.
         System.out.println("정렬후 List뽑아보기:"+sortedMapList.toString());
 
+        //220929 Thinking...
+
+
 
         //종목수만큼 짜르기(꼭 안해도될 비교하지않게)
         //배열자르기
