@@ -1,9 +1,11 @@
 package com.codingtest.practice.prac202209;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-public class AthleticCompetition2 {
+public class AthleticCompetition3 {
 
     //새로운 마음으로 다시..
     public static int solution(int[][] ability) {
@@ -11,10 +13,7 @@ public class AthleticCompetition2 {
 
         int sportsCnt = ability[0].length;
         int studentCnt = ability.length;
-        System.out.println("cutLen:"+sportsCnt);
-        System.out.println("studentCnt:"+studentCnt);
 
-        //List<Integer> scoreList = new ArrayList<>();
         List<List<Integer>> allScoreList = new ArrayList<>();
 
         int[] standardStudentNumArr = new int[sportsCnt];
@@ -25,17 +24,13 @@ public class AthleticCompetition2 {
             for(int j=0; j<studentCnt; j++) {
                 studentScoreList.add(ability[j][i]);
             }
-            System.out.println("studentScoreList:"+studentScoreList.toString());
             allScoreList.add(studentScoreList);
             int index = studentScoreList.indexOf(Collections.max(studentScoreList));
             standardStudentNumArr[i] = index;
 
         }
 
-        System.out.println("뽑아볼게요:"+allScoreList.toString());
-
         List<Integer> scoreList = new ArrayList<>();
-
         for(int i=0; i<sportsCnt; i++) {
             int scoreSum = 0;
             List<Integer> tempScoreList = allScoreList.get(i);
@@ -44,18 +39,11 @@ public class AthleticCompetition2 {
             for(int j=0; j<sportsCnt-1; j++) {
                 tempScoreList.remove(highestStudentNum);
                 highestStudentNum = tempScoreList.indexOf(Collections.max(tempScoreList));
-                System.out.println("i:"+i+",j:"+j+"highestStudentNum:"+highestStudentNum);
-                System.out.println(" tempScoreList.get(highestStudentNum):"+ tempScoreList.get(highestStudentNum));
                 scoreSum += tempScoreList.get(highestStudentNum);
             }
             scoreList.add(scoreSum);
         }
-        System.out.println("scoreList:"+scoreList.toString());
-        System.out.println(Arrays.toString(standardStudentNumArr));
-
-
         answer = Collections.max(scoreList);
-
         return answer;
     }
 
@@ -66,8 +54,8 @@ public class AthleticCompetition2 {
 
 
 
-        int answer = AthleticCompetition2.solution(ability1);
-        int answer2 = AthleticCompetition2.solution(ability2);
+        int answer = AthleticCompetition3.solution(ability1);
+        int answer2 = AthleticCompetition3.solution(ability2);
         System.out.println("답은?"+answer);
         System.out.println("답은?"+answer2);
 

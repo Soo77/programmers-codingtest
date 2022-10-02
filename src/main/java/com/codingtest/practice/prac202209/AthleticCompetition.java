@@ -34,8 +34,6 @@ public class AthleticCompetition {
         //java.util.Arrays.deepToString() 메소드를 이용하면
         //간단하게 2차원 배열의 값을 문자열로 반환받아서 출력할 수 있다.
 
-        System.out.println("List뽑아보기:"+studentScoreList.toString());
-
         //int 배열 : 내림차순 정렬
         //방법1
         //Integer[] IntegerArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
@@ -63,14 +61,11 @@ public class AthleticCompetition {
                     tempMap.put(key,beforeSortMap.get(key));
                 }
                 tempCnt++;
-                System.out.println("key: "+key+",value: "+beforeSortMap.get(key));
             }
-            System.out.println();
             sortedMapList.add(tempMap);
         }
 
         //220928 정렬후 최소한의 숫자로 잘라서 Hashmap에 넣고 List로 만들었다.
-        System.out.println("정렬후 List뽑아보기:"+sortedMapList.toString());
 
         //220929 Thinking...
 
@@ -80,10 +75,67 @@ public class AthleticCompetition {
         //그리고 기준으로 삼은 해쉬맵에서 가장높은점수+나머지 해쉬맵에서 기준삼은 해쉬맵의 최고점수의 학생번호를 뺀 나머지 점수를
         //더하려고하는중이었는데.. 곧 입력하겠다.
 
+        List<Integer> finalScoreList = new ArrayList<>();
+        for(int i=0; i<sortedMapList.size(); i++) {
+            List<HashMap<Integer,Integer>> theOtherMapList = new ArrayList<>();
+            List<Integer> exceptStudentList = new ArrayList<>();
+
+            int finalScore = 0;
+            int highScoreStudent = Collections.max(sortedMapList.get(i).entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+            exceptStudentList.add(highScoreStudent);
+            finalScore += sortedMapList.get(i).get(highScoreStudent);
+            for(int j=0; j<sortedMapList.size(); j++) {
+                if(j!=i) {
+                    theOtherMapList.add(sortedMapList.get(j));
+                }
+            }
+
+            System.out.println(i+"번째를 제외한 맵의 리스트 theOtherMapList:"+theOtherMapList.toString());
+
+
+            for(int j=0; j<theOtherMapList.size(); j++) {
+                int tempScoreStudentNum = 0;
+                //제거해야할 학생수만큼 돌며
+                //제거할 학생을 제거하기(이렇게 말하니까 무섭다)
+                //중복된 학생을 제거하기 ㅠㅠㅋㅋㅋ
+                //말은 제거지만 값을 -1로 설정해주기
+                for(int k=0; k<exceptStudentList.size(); k++)
+                    if (theOtherMapList.get(j).containsKey(exceptStudentList.get(k))) {
+                        int tempScore = theOtherMapList.get(j).get(exceptStudentList.get(k));
+                        theOtherMapList.get(j).put(exceptStudentList.get(k), -1); //첫번째 높았던 학생점수를 100 -> -1으로 만들어버림
+                        tempScoreStudentNum = Collections.max(theOtherMapList.get(j).entrySet(), Comparator.comparingInt(Entry::getValue)).getKey();
+
+                        System.out.println("몇이신데요tempScoreStudentNum:" + tempScoreStudentNum);
+                        //두번째로 높은 점수 더하게함.
+                        finalScore += theOtherMapList.get(j).get(tempScoreStudentNum);
+                        //exceptStudentList.add(tempScoreStudentNum);
+                        //점수다시 되돌려주기
+                        theOtherMapList.get(j).put(exceptStudentList.get(k), tempScore);
+                    } else {
+                        tempScoreStudentNum = Collections.max(theOtherMapList.get(j).entrySet(), Comparator.comparingInt(Entry::getValue)).getKey();
+                        int tempScore = theOtherMapList.get(j).get(tempScoreStudentNum);
+                        finalScore += tempScore;
+                        //점수다시 되돌려주기
+                        theOtherMapList.get(j).put(tempScoreStudentNum, tempScore);
+                    }
+                exceptStudentList.add(tempScoreStudentNum);
+            }
+
+            System.out.println("중복학생을 제거한 theOtherMapList:"+theOtherMapList.toString());
+            System.out.println("highScoreStudent:"+highScoreStudent);
+            System.out.println("finalScore:"+finalScore);
+            System.out.println("exceptStudentList:"+exceptStudentList.toString());
+            finalScoreList.add(finalScore);
+        }
+
+
+        System.out.println("파이널점수리스트:"+finalScoreList.toString());
+
+
 
         //종목수만큼 짜르기(꼭 안해도될 비교하지않게)
         //배열자르기
-        //int[] arr = {0,1,2,3,4,5};
+        //int[] arr = {0,1,2,3,4,5};.
         //int position = 3;
         //int[] arr1 = Arrays.copyOfRange(arr,0,position);
         //int[] arr2 = Arrays.copyOfRange(arr,position,arr.length);
@@ -112,9 +164,9 @@ public class AthleticCompetition {
 
 
         int answer = AthleticCompetition.solution(ability1);
-        int answer2 = AthleticCompetition.solution(ability2);
+        //int answer2 = AthleticCompetition.solution(ability2);
         System.out.println("답은?"+answer);
-        System.out.println("답은?"+answer2);
+//        System.out.println("답은?"+answer2);
 
     }
 }
