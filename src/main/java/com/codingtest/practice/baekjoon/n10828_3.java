@@ -1,58 +1,49 @@
 package com.codingtest.practice.baekjoon;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class n10828 {
+public class n10828_3 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NumberFormatException, IOException {
         //stack 문제
         Stack<Integer> stack = new Stack<Integer>();
-        List<Integer> answerList = new ArrayList<Integer>();
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        //Scanner를 사용하면 시간초과가 떠서 구글링해보니
+        //BufferedReader, BufferedWriter 사용하라고 한다.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n = Integer.parseInt(br.readLine());
         for (int i = 0; i < n; i++) {
-            String s = sc.next();
-            if (s.startsWith("push")) {
-                int num = sc.nextInt();
-                stack.push(num);
-                continue;
-            } else if (s.startsWith("top")) {
+            String[] s = br.readLine().split(" ");
+            if (s[0].equals("push")) {
+                stack.push(Integer.parseInt(s[1]));
+            } else if (s[0].equals("top")) {
                 if (!stack.empty()) {
-                    int num = stack.peek();
-                    answerList.add(num);
+                    bw.write(stack.peek()+"\n");
                 } else {
-                    answerList.add(-1);
+                    bw.write(-1 + "\n");
                 }
-                continue;
-            } else if (s.startsWith("size")) {
-                int size = stack.size();
-                answerList.add(size);
-                continue;
-            } else if (s.startsWith("empty")) {
+            } else if (s[0].equals("size")) {
+                bw.write(stack.size()+"\n");
+            } else if (s[0].equals("empty")) {
                 if (stack.empty()) {
-                    answerList.add(1);
+                    bw.write(1+"\n");
                 } else {
-                    answerList.add(0);
+                    bw.write(0+"\n");
                 }
-                continue;
-            } else if (s.startsWith("pop")) {
+            } else if (s[0].equals("pop")) {
                 if (!stack.empty()) {
-                    int num = stack.peek();
-                    answerList.add(num);
-                    stack.pop();
+                    bw.write(stack.pop()+"\n");
                 } else {
-                    answerList.add(-1);
+                    bw.write(-1+"\n");
                 }
-                continue;
             }
 
         }
-
-        for(Integer i : answerList) {
-            System.out.println(i);
-        }
+        bw.flush();
     }
 }
