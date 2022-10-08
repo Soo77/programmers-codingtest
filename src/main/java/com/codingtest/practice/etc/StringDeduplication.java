@@ -1,9 +1,10 @@
-package com.codingtest.practice.baekjoon;
+package com.codingtest.practice.etc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //DFS, BFS 문제 풀어보기
-public class n1260 {
+public class StringDeduplication {
 
     public static void main(String[] args) {
 
