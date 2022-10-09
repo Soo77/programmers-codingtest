@@ -16,11 +16,15 @@ public class n1260 {
         stack.add(s);
         while(!stack.empty()) {
             int v = stack.pop();
+            System.out.println("꺼낸애:"+v);
             if(visited[v]) continue;
             else visited[v] = true;
             sb.append(v+" ");
+            System.out.println("스택상황:"+stack);
+            System.out.println("붙인애:"+v);
             for(int i=n; i >=1; i--) {
                 if(edge[v][i] == 1 && !visited[i]) {
+                    System.out.println("들어온애 v:"+v+",i:"+i);
                     stack.add(i);
                 }
             }
@@ -58,10 +62,14 @@ public class n1260 {
         br.close();
 
         edge = new int[n+1][n+1];
-        for(i=0; i<m; i++)
+        for(i=0; i<m; i++) {
+            System.out.println("이게뭘까나1:: "+c[i][0]+","+c[i][1]);
             edge[c[i][0]][c[i][1]] = 1;
-        for(i=0; i<m; i++)
+        }
+        for(i=0; i<m; i++) {
+            System.out.println("이게뭘까나2:: "+c[i][1]+","+c[i][0]);
             edge[c[i][1]][c[i][0]] = 1;
+        }
         DFS(v);
         System.out.println(Arrays.deepToString(c));
         System.out.println(Arrays.deepToString(edge));

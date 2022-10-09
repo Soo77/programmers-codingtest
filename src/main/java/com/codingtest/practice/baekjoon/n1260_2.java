@@ -1,26 +1,37 @@
 package com.codingtest.practice.baekjoon;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 //DFS, BFS 문제 풀어보기
-public class n1260 {
+public class n1260_2 {
 
-    static int n, edge[][]; //노드개수, 간선그래프
+    /*
+    * static 변수 특징
+    *  - Static 변수는 클래스 변수이다.
+    *  - 객체를 생성하지 않고도 Static 자원에 접근이 가능하다.
+    *  - 메모리에 고정적으로 할당되어, 프로그램이 종료될 때 해제되는 변수이다.
+    * */
+    static int n, edge[][];
     static boolean visited[];
     static StringBuilder sb = new StringBuilder();
 
     public static void DFS(int s) {
+
         Stack<Integer> stack = new Stack<>();
         visited = new boolean[n+1];
         stack.add(s);
         while(!stack.empty()) {
             int v = stack.pop();
-            if(visited[v]) continue;
-            else visited[v] = true;
+            if(visited[v]) continue; // v가 방문한 노드면 다시 처음으로
+            visited[v] = true;
             sb.append(v+" ");
-            for(int i=n; i >=1; i--) {
-                if(edge[v][i] == 1 && !visited[i]) {
+            for(int i=n; i>=1; i--){
+                if(edge[v][i]==1 && !visited[i]) {
                     stack.add(i);
                 }
             }
@@ -30,31 +41,21 @@ public class n1260 {
 
     public static void main(String[] args) throws IOException {
 
-        //DFS(Depth First Search 깊이 우선 탐색)
-        /*
-        *  - 루트 노드에서 시작해서 다음 분기로 넘어가기 전에 해당 분기를 완벽하게
-        *  탐색하는 방법
-        *  - 넓게 탐색하기 전에 깊게 탐색하는 것이다.
-        * */
-        //방법1: 스택을 이용해서 풀기
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken()); // 노드 개수
-        int m = Integer.parseInt(st.nextToken()); // 간선이 연결하는 두 정점
-        int v = Integer.parseInt(st.nextToken()); // 탐색 시작할 정점
-        int i, j;
-        int c[][] = new int[m][2]; //주어지는 m 넣을 배열
+
+        n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int v = Integer.parseInt(st.nextToken());
+        int i,j;
+        int c[][] = new int[m][2];
         for(i=0; i<m; i++) {
             st = new StringTokenizer(br.readLine());
             for(j=0; j<2; j++) {
                 c[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        /*
-        * StringTokenizer 의
-        * nextElement는 Object를 반환
-        * nextToken은 String 을 반환한다고 한다.
-        * */
+        System.out.println(Arrays.deepToString(c));
         br.close();
 
         edge = new int[n+1][n+1];
@@ -63,11 +64,6 @@ public class n1260 {
         for(i=0; i<m; i++)
             edge[c[i][1]][c[i][0]] = 1;
         DFS(v);
-        System.out.println(Arrays.deepToString(c));
-        System.out.println(Arrays.deepToString(edge));
 
-
-
-        //방법2: 재귀를 이용해서 풀기
     }
 }

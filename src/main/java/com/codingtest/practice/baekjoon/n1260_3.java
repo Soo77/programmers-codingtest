@@ -8,20 +8,30 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 //DFS, BFS 문제 풀어보기
-public class n1260_2 {
+public class n1260_3 {
 
-    /*
-    * static 변수 특징
-    *  - Static 변수는 클래스 변수이다.
-    *  - 객체를 생성하지 않고도 Static 자원에 접근이 가능하다.
-    *  - 메모리에 고정적으로 할당되어, 프로그램이 종료될 때 해제되는 변수이다.
-    * */
-    static int n, edge[][];
-    static boolean vitsited[];
+
+    static int n,edge[][];
+    static boolean visited[];
     static StringBuilder sb = new StringBuilder();
 
     public static void DFS(int s) {
-
+        Stack<Integer> stack = new Stack<>();
+        visited = new boolean[n+1];
+        stack.add(s);
+        //int idx;
+        while(!stack.isEmpty()) {
+            int idx = stack.pop();
+            if(visited[idx]) continue;
+            else visited[idx] = true;
+            sb.append(idx + " ");
+            for(int u=n; u>=1; u--) {
+                if(edge[idx][u] == 1 && !visited[u]) {
+                    stack.add(u);
+                }
+            }
+        }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) throws IOException {
@@ -32,8 +42,21 @@ public class n1260_2 {
         n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int v = Integer.parseInt(st.nextToken());
-        int i,j;
         int c[][] = new int[m][2];
-        for()
+        int i,j;
+        for(i=0; i<m; i++) {
+            st = new StringTokenizer(br.readLine());
+            for(j=0; j<2; j++) {
+                c[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        edge = new int[n+1][n+1];
+        for(i=0; i<m; i++)
+            edge[c[i][0]][c[i][1]] = 1;
+        for(i=0; i<m; i++)
+            edge[c[i][1]][c[i][0]] = 1;
+
+        DFS(v);
     }
 }
