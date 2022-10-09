@@ -3,9 +3,7 @@ package com.codingtest.practice.baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.*;
 
 //DFS, BFS 문제 풀어보기
 public class n1260_3 {
@@ -34,6 +32,27 @@ public class n1260_3 {
         System.out.println(sb);
     }
 
+    public static void BFS(int s) {
+        sb = new StringBuilder();
+        Queue<Integer> queue = new LinkedList<>();
+        visited = new boolean[n+1];
+        queue.add(s);
+        while(!queue.isEmpty()) {
+            int v = queue.poll();
+            if(visited[v]) continue;
+            else visited[v] = true;
+            sb.append(v + " ");
+            for(int u=1; u<=n; u++) {
+                if(edge[v][u] == 1 && !visited[u]) {
+                    queue.add(u);
+                }
+            }
+        }
+        System.out.println(sb);
+
+
+    }
+
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,5 +77,6 @@ public class n1260_3 {
             edge[c[i][1]][c[i][0]] = 1;
 
         DFS(v);
+        BFS(v);
     }
 }
