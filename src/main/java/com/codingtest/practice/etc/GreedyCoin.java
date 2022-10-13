@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //그리디 알고리즘 예시
-public class Greedy {
+public class GreedyCoin {
 
     public static void main(String[] args) {
 
