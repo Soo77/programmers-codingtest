@@ -51,12 +51,13 @@ public class Become1 {
         //스스로 해보기
         int result = 0;
         while(true) {
+            // n이 k로 나누어떨어지지 않을때 "가장 가까운 k로 나누어떨어지는 수"를 찾아 target에 담는다.
             int target = (n/k)*k;
-            result += (n - target);
-            n = target;
-            if(n==0) result-=1;
+            result += (n - target); //1을 빼는 연산을 한번에 수행하도록 n에서 target을 뺀 수를 result에 더함.
+            n = target; //n이 target이 될수있도록 담음.
+            if(n==0) result-=1; //n이 1이 될때까지의 연산이므로 0이 되었으면 연산한 횟수에서 1을 뺌.
             if(n<k) break;
-            result += 1;
+            result += 1; //n을 k로 나눌때 연산횟수 1 더함
             n /= k;
         }
 
