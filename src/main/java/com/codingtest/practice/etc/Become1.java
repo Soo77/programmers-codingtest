@@ -20,26 +20,47 @@ public class Become1 {
         return cnt;
     }
 
+
     public static int becomeOne2(int n, int k) {
-        int cnt = 0;
+        int result = 0;
+
         while(true) {
-            // n이 k로 나누어 떨어지는 수가 될때까지 빼기
-            System.out.println("("+n+"/"+k+")*"+k);
-            System.out.println(n/k+"*"+k);
-            int target = (n / k) * k ;
+            // 25/3 * 3 = 24
+            int target = (n/k)*k;
             System.out.println("target:"+target);
-            System.out.println(n+"-"+target);
-            cnt += (n - target);
+            System.out.println("n-target="+(n-target)+"=result");
+            result += (n-target);
+            System.out.println("result에 "+(n-target)+"을 더합니다. 누적:"+result);
             n = target;
-            // n이 k보다 작을 때(더이상 나눌 수 없을때) 반복문 탈출
-            if(n < k) break;
-            //k로 나누기
-            cnt++;
+            System.out.println("n이 누군데:"+n);
+
+            if(n<k) {System.out.println("result:"+result); break;}
+            result += 1;
+            System.out.println("result에 1을 더합니다. 누적:"+result);
+            System.out.println("n/k="+n/k);
+            n = n/k;
+
+
+        }
+        result += (n-1);
+        return result;
+
+    }
+
+    public static int becomeOne3(int n, int k) {
+        //스스로 해보기
+        int result = 0;
+        while(true) {
+            int target = (n/k)*k;
+            result += (n - target);
+            n = target;
+            if(n==0) result-=1;
+            if(n<k) break;
+            result += 1;
             n /= k;
         }
-        //마지막으로 남은 수에 대하여 1씩 빼기
-        cnt += (n - 1);
-        return cnt;
+
+        return result;
     }
 
     public static void main(String[] args) {
@@ -59,11 +80,13 @@ public class Become1 {
         int b = sc.nextInt();
 
         int result2 = becomeOne(a,b);
-        System.out.println(result2);
+        System.out.println("becomeOne:"+result2);
 
-        int result3 = becomeOne2(a,b);
-        System.out.println(result3);
+        //int result3 = becomeOne2(a,b);
+        //System.out.println(result3);
 
+        int result4 = becomeOne3(a,b);
+        System.out.println("result4:"+result4);
 
 
 
