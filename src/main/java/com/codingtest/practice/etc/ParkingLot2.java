@@ -3,7 +3,7 @@ package com.codingtest.practice.etc;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+8888
 //프로그래머스 주차문제
 public class ParkingLot2 {
 
@@ -28,22 +28,17 @@ public class ParkingLot2 {
             Date format = new SimpleDateFormat("HH:mm").parse(date);
             long min = ((format.getTime() / 60000) +540); //분으로 변환
             int intMin = (int)min;
-            System.out.println(time+":"+intMin);
-
 
             if(!carNumMap.isEmpty() && carNumMap.containsKey(carNum)) {
 
                 if(inout.equals("IN")) {
-                    System.out.println(carNum+"번 차:"+time+","+intMin+"를 뺍니다."+inout);
                     carNumMap.put(carNum,carNumMap.get(carNum)-intMin);
                 } else {
-                    System.out.println(carNum+"번 차:"+time+","+intMin+"를 더합니다."+inout);
                     carNumMap.put(carNum,carNumMap.get(carNum)+intMin);
                 }
 
             } else {
-                System.out.println(carNum+"번 차:"+time+","+intMin+"를 첨 입력합니다.."+inout);
-                carNumMap.put(carNum,intMin);
+                carNumMap.put(carNum,-intMin);
             }
 
 
@@ -51,17 +46,50 @@ public class ParkingLot2 {
 
         }
 
-
-
         carNumMap.forEach((key,value) ->{
-            if(value < 0) {
-                //carNumMap.put(key, carNumMap.get(key) +1439);
+            if(value <= 0) {
+                carNumMap.put(key, carNumMap.get(key) +1439);
             }
+
         });
 
         carNumMap.forEach((key,value) ->{
-            System.out.println(key+":"+value);
+            System.out.println("계산전"+key+":"+value);
         });
+
+        carNumMap.forEach((key,value) ->{
+
+            int total = 0;
+            int base = fees[0];
+            int basefee = fees[1];
+            double plustime = fees[2];
+            int plusfee = fees[3];
+            if(carNumMap.get(key) >= base) {
+                total += basefee + (int)Math.ceil((carNumMap.get(key)-base)/plustime) * plusfee;
+            } else {
+                total = basefee;
+            }
+            //answerList.add(total);
+            carNumMap.put(key, total);
+
+        });
+
+        carNumMap.forEach((key,value) ->{
+            System.out.println("계산후"+key+":"+value);
+        });
+
+        List<Integer> answerList = new ArrayList<>();
+        HashMap<String,Integer> finalAnswerMap = new HashMap<>();
+
+        List<String> keySet = new ArrayList<>(carNumMap.keySet());
+
+        // 키 값으로 오름차순 정렬
+        Collections.sort(keySet);
+
+        for (String key : keySet) {
+            answerList.add(carNumMap.get(key));
+        }
+        answer = answerList.stream().mapToInt(i->i).toArray();
 
         return answer;
 
