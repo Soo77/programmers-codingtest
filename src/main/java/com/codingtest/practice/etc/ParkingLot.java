@@ -133,12 +133,30 @@ public class ParkingLot {
         int[] fees2 = {120, 0, 60, 591};
         String[] records2 = {"16:00 3961 IN", "16:00 0202 IN", "18:00 3961 OUT", "18:00 0202 OUT", "23:58 3961 IN"};
 
-        int[] fees3 = {1, 461, 1, 10};
-        String[] records3 = {"00:00 1234 IN"};
+        int[] fees3 = {1, 10, 1, 11};
+        String[] records3 = {"00:00 1234 IN", "00:02 1234 OUT"};
 
         int[] result = solution(fees, records);
         int[] result2 = solution(fees2, records2);
         int[] result3 = solution(fees3, records3);
+
+        String date1 = "11:00";
+        String date2 = "13:30";
+
+        Date format1 = new SimpleDateFormat("HH:mm").parse(date1);
+        Date format2 = new SimpleDateFormat("HH:mm").parse(date2);
+
+        long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+        long diffMin = (format1.getTime() - format2.getTime()) / 60000; //분 차이
+        long diffHor = (format1.getTime() - format2.getTime()) / 3600000; //시 차이
+        long diffDays = diffSec / (24*60*60); //일자수 차이
+
+        System.out.println(diffSec + "초 차이");
+        System.out.println(diffMin + "분 차이");
+        System.out.println(diffHor + "시 차이");
+        System.out.println(diffDays + "일 차이");
+
+
         System.out.println("result: "+ Arrays.toString(result));
         System.out.println("result2: "+ Arrays.toString(result2));
         System.out.println("result3: "+ Arrays.toString(result3));
