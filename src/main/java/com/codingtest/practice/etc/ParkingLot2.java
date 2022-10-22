@@ -3,7 +3,7 @@ package com.codingtest.practice.etc;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-8888
+
 //프로그래머스 주차문제
 public class ParkingLot2 {
 

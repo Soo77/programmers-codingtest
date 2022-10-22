@@ -1,0 +1,16 @@
+
+
+-- 코드를 입력하세요
+-- 그룹별 조건에 맞는 식당 목록 출력하기g
+select mem.member_name,rev.review_text, date_format(rev.review_date, '%Y-%m-%d')
+from rest_review REV
+right outer join member_profile MEM on MEM.member_id = REV.member_id
+where MEM.member_id IN (select member_id
+from rest_review
+group by member_id
+having count(*) =
+(select max(c) from
+ (select count(member_id) as c
+  from rest_review
+  group by member_id) M) )
+order by REV.review_date, REV.review_text;
