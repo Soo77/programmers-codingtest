@@ -14,3 +14,14 @@ having count(*) =
   from rest_review
   group by member_id) M) )
 order by REV.review_date, REV.review_text;
+
+select B.member_name,A.review_text,left(A.review_date,10) REVIEW_DATE from rest_review A
+join member_profile B on A.member_id=B.member_id
+where B.member_id in (
+select member_id from rest_review
+group by member_id
+having count(*) = (sA
+    select max(c) from (select member_id,count(member_id) as c from
+    rest_review
+    group by member_id) M))
+order by A.review_date,A.review_text;
