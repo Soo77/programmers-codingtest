@@ -6,3 +6,58 @@
 총매출을 조회하는 SQL문을 작성해주세요.
 이때 결과는 총매출을 기준으로 내림차순 정렬해주시고 총매출이 같다면 식품 ID를 기준으로 오름차순 정렬해주세요.
 
+
+-- 코드를 입력하세요
+SELECT product_id,count(*) from
+(select A.product_id, B.amount
+from food_product A
+join food_order B on A.product_id=B.product_id
+where B.produce_date like '2022-05%')M
+group by product_id
+
+product_id	count(*)
+P0022	2
+P0023	1
+P0024	1
+
+
+select B.product_id,B.amount,B.produce_date
+from food_product A
+join food_order B on A.product_id=B.product_id
+where B.produce_date like '2022-05%'
+
+product_id	amount	produce_date
+P0022	1000	2022-05-01 00:00:00
+P0022	1500	2022-05-10 00:00:00
+P0023	1200	2022-05-15 00:00:00
+P0024	1000	2022-05-20 00:00:00
+
+SELECT product_id,product_name,count(*)*(select price from food_product where product_id = M.product_id) as total_sales
+from
+(select A.product_id,A.price, A.product_name, B.amount
+from food_product A
+join food_order B on A.product_id=B.product_id
+where B.produce_date like '2022-05%') M
+group by product_id
+order by total_sales desc,product_id;
+
+--최종정답
+select B.product_id,A.product_name,sum(B.amount)*A.price as TOTAL_SALES
+from food_product A
+join food_order B on A.product_id=B.product_id
+where B.produce_date like '2022-05%'
+group by product_id
+order by TOTAL_SALES desc, product_id;
+
+
+
+
+select B.product_id,count(B.amount)*B.amount,B.produce_date
+from food_product A
+join food_order B on A.product_id=B.product_id
+where B.produce_date like '2022-05%'
+group by product_id
+product_id	count(B.amount)*B.amount	produce_date
+P0022	2000	2022-05-01 00:00:00
+P0023	1200	2022-05-15 00:00:00
+P0024	1000	2022-05-20 00:00:00
