@@ -32,7 +32,7 @@ public class JustTest {
         //System.out.println(ages.stream().reduce((b,c) -> b+c).get());//1+2+3=6
 //        List<Integer> ages = new ArrayList<Integer>();
 //        ages.add(1);ages.add(2);ages.add(3);ages.add(4);
-//        System.out.println("\n\n");
+//        System.out.println("\n2309\n2309");
 //        System.out.println(ages.stream().reduce((b,c) -> b+c).get());
 
 

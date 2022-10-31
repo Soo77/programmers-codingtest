@@ -9,30 +9,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class n10818 {
+public class n2460 {
 
-    // 최소,최대
+    // 지능형 기차 2
 
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int cnt = Integer.parseInt(br.readLine());
-        String num = br.readLine();
-        StringTokenizer st = new StringTokenizer(num);
+        int peopleCnt = 0;
+        List<Integer> cntList = new ArrayList<>();
+        for(int i=0 ;i<10; i++) {
+           String input = br.readLine();
+           int out = Integer.parseInt(input.split(" ")[0])*(-1);
+           int in = Integer.parseInt(input.split(" ")[1]);
 
-        List<Integer> numList = new ArrayList<>();
-        for(int i=0; i<cnt; i++) {
-            numList.add(Integer.parseInt(st.nextToken()));
+           peopleCnt += (out+in);
+           cntList.add(peopleCnt);
         }
 
-        Collections.sort(numList);
+        int max = Collections.max(cntList);
 
-        int min = numList.get(0);
-        int max = numList.get(numList.size()-1);
-        //System.out.println(min + " "+ max);
-        bw.write(min + " " + max);
+        bw.write(String.valueOf(max));
         bw.flush();
     }
 }
