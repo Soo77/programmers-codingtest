@@ -4,37 +4,68 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class n14888 {
 
     // 연산자 끼워넣기
+    // 다시풀어보기
+
+    static int MAX = Integer.MIN_VALUE;
+    static int MIN = Integer.MAX_VALUE;
+    static int[] operator = new int[4];
+    static int[] number;
+    static int N;
+
+    public static void dfs(int num, int idx) {
+        if(idx == N) {
+            MAX = Math.max(MAX, num);
+            MIN = Math.min(MIN, num);
+            return ;
+        }
+
+        for(int i=0; i<4; i++) {
+            if(operator[i] > 0) {
+
+                operator[i]--;
+
+                switch(i) {
+                    case 0 : dfs(num + number[idx], idx + 1); break;
+                    case 1 : dfs(num - number[idx], idx + 1); break;
+                    case 2 : dfs(num * number[idx], idx + 1); break;
+                    case 3 : dfs(num / number[idx], idx + 1); break;
+                }
+                operator[i]++;
+            }
+
+        }
+    }
 
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int n = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
+        number = new int[N];
 
-        List<Integer> numList = new ArrayList<>();
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=0; i<n; i++) {
-            numList.add(Integer.parseInt(st.nextToken()));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<N; i++) {
+            number[i] = Integer.parseInt(st.nextToken());
         }
 
-        int[] operArr = new int[4];
-        StringTokenizer oper = new StringTokenizer(br.readLine());
+
+        st= new StringTokenizer(br.readLine(), " ");
         for(int i=0; i<4; i++) {
-            operArr[i] = Integer.parseInt(oper.nextToken());
+            operator[i] = Integer.parseInt(st.nextToken());
         }
+        System.out.println(MAX+","+MIN);
 
-        for(int     )
+        dfs(number[0],1);
 
 
+        bw.write(MAX+"\n");
+        bw.write(MIN+"");
         bw.flush();
 
     }
