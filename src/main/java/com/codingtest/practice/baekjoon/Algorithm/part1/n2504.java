@@ -9,6 +9,7 @@ import java.util.Stack;
 public class n2504 {
 
     // 괄호의 값
+    // 괄호의값 다시해보기
 
     public static void main(String[] args) throws Exception {
 
