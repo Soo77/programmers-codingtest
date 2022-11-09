@@ -49,8 +49,8 @@ public class n1062 {
 
     }
     private static void dfs(int start,int count) {
-        if(count == K) {
-            int result = 0;
+,8        if(count == K) {
+  .8+-61b          int result = 0;
             for(int i=0; i<N; i++) {
                 boolean isTrue = true;
                 for(int j=0; j<stArr[i].length(); j++) {
