@@ -1,4 +1,4 @@
-package com.codingtest.practice.baekjoon.Algorithm.part1;
+package com.codingtest.practice.baekjoon.Algorithm.part2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
