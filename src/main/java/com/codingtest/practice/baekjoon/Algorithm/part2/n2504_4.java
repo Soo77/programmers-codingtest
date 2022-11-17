@@ -29,6 +29,7 @@ public class n2504_4 {
         for(int i=0; i<str.length; i++) {
             char c = str[i];
             switch (c) {
+
                 case '(' :
                     stack.push(c);
                     temp *= 2; break;
