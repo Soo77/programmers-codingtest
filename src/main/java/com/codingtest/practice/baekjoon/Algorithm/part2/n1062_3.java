@@ -72,7 +72,7 @@ public class n1062_3 {
         }
 
         dfs(0,0);
-        System.out.println(max);
+        System.out.println("답:"+max);
     }
 
 }
