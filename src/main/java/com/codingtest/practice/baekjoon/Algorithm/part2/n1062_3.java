@@ -22,18 +22,14 @@ public class n1062_3 {
             for (int i = 0; i < strArr.length; i++) {
                 boolean chk = true;
                 for (int j = 0; j < strArr[i].length(); j++) {
-                    //char ch = strArr[i].charAt(j);
-                    //System.out.println("visited[ch - 'a']:"+visited[ch - 'a']);
                     if (!visited[strArr[i].charAt(j) - 'a']) {
                         chk = false;
-                        System.out.println("이건못읽어유:" + strArr[i]);
                         break;
                     }
                 }
                 if (chk) cnt++;
             }
 
-            System.out.println("max:" + max);
             max = Math.max(max, cnt);
             return;
         }
@@ -47,49 +43,11 @@ public class n1062_3 {
             }
 
         }
-        /*static void check(int alpha, int count) {
-            if (count == K - 5) {
-                int temp = 0;
-                for (int i = 0; i < N; i++) {
-                    boolean flag = true;
-
-                    for (int j = 0; j < strArr[i].length(); j++) {
-                        *//* 배우지않은 알파벳이 있는 경우 *//*
-                        if (!visited[strArr[i].charAt(j) - 'a']) {
-                            flag = false;
-                            break;
-                        }
-                    }
-
-                    if (flag) {
-                        temp++;
-                    }
-                }
-                max = Math.max(temp, max);
-                return;
-            }
-
-            for (int i = alpha; i < 26; i++) {
-                if (!visited[i]) {
-                    visited[i] = true;
-                    check(i, count + 1);
-                    visited[i] = false;
-                }
-            }
-        }*/
     }
 
     public static void main(String[] args) throws Exception {
 
-/*        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());*/
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
@@ -114,7 +72,7 @@ public class n1062_3 {
         }
 
         dfs(0,0);
-        System.out.println("답:"+max);
+        System.out.println(max);
     }
 
 }

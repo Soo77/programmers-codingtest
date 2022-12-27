@@ -15,9 +15,41 @@ public class n1062_4 {
     static String[] strArr;
     static int answer = 0;
 
+    public static void main(String[] args) throws Exception {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        strArr = new String[N];
+
+        if(K < 5) {
+            bw.write(String.valueOf(0));
+            bw.flush();
+            return;
+        } else if(K == 26) {
+            bw.write(String.valueOf(N));
+            bw.flush();
+            return;
+        }
+
+        for(int i=0; i<N; i++) {
+            strArr[i] = br.readLine().replaceAll("anta|tica","");
+        }
+        visited['a' - 'a'] = true;
+        visited['n' - 'a'] = true;
+        visited['t' - 'a'] = true;
+        visited['i' - 'a'] = true;
+        visited['c' - 'a'] = true;
+
+        check(0,0);
+        bw.write(String.valueOf(answer));
+        bw.flush();
+    }
+
     public static void check(int start, int count) {
-
-
         int temp = 0;
         if(count == K-5) {
             for(int i=0; i<strArr.length; i++) {
@@ -36,49 +68,12 @@ public class n1062_4 {
             return ;
         }
 
-
-        for(int i=0; i<26; i++) {
+        for(int i=start; i<26; i++) {
             if(!visited[i]) {
                 visited[i] = true;
                 check(i,count + 1);
                 visited[i] = false;
             }
         }
-
-
     }
-
-    public static void main(String[] args) throws Exception {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
-        strArr = new String[N];
-
-        if(K < 5) {
-            answer = 0;
-            return;
-        } else if(K == 26) {
-            answer = N;
-            return;
-        } else {
-            for(int i=0; i<N; i++) {
-                strArr[i] = br.readLine().replaceAll("anta|tica","");
-            }
-            visited['a' - 'a'] = true;
-            visited['n' - 'a'] = true;
-            visited['t' - 'a'] = true;
-            visited['i' - 'a'] = true;
-            visited['c' - 'a'] = true;
-        }
-
-        check(0,0);
-        bw.write(answer);
-
-
-    }
-
 }
