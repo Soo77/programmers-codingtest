@@ -12,6 +12,17 @@ public Class getClass() : 객체 자신의 클래스 정보를 담고 있는 Cla
 							메서드가 몇개있고, 생성자가 뭐가있고 등등. 즉, 설계도 객체. 어떤 객체에 대해서 getClass를 호출하면, 
 							설계도 객체를 준다. 이 설계도 객체를 통해서 1. 객체를 생성 가능 2. 객체에 대한 정보 얻음) 
 
+Ch9-2 equals(Object obj)
+- 객체 자신(this)과 주어진 객체(obj)를 비교한다. 같으면 true, 다르면 false.
+- Object클래스의 equals()는 객체의 주소를 비교(참조변수 값 비교)
+주소가 아닌 value를 비교하려면 Object의 equals()를 오버라이딩해서 사용.
+
+Ch9-3 equals(Object obj)의 오버라이딩
+- 인스턴스 변수(iv)의 값을 비교하도록 equals()를 오버라이딩해야한다.
+(cv: 객체마다 공통, iv: 객체마다 다름)
+
+
+
 Ch9-4 hashCode()
 - 객체의 해시코드(hash code)를 반환하는 메서드
 (해시코드는 정수값이고, 해싱 알고리즘에서 사용한다.)
