@@ -1,0 +1,96 @@
+ch9-1 Object 클래스
+- 모든 클래스의 최고 조상. 오직 11개의 메서드만을 가지고 있다.
+(iv나 cv 없다.)
+- notify(), wait()등은 쓰레드와 관련된 메서드이다.
+
+protected Object clone() : 객체 자신의 복사본을 반환한다.
+public boolean equals(Object obj) : 객체 자신과 객체 obj가 같은 객체인지 알려준다.(같으면 true)
+protected void finalize() : 객체가 소멸될 때 가비지 컬렉터에 의해 자동적으로 호출된다. 이 때 수행되어야하는
+코드가 있을 때 오버라이딩 한다. (거의 사용안함)
+public Class getClass() : 객체 자신의 클래스 정보를 담고 있는 Class인스턴스를 반환한다.
+							(Class객체에는 (예시)Hello class에 대한 정보가 다 담겨있다. iv 개수, 조상이 누구고, 
+							메서드가 몇개있고, 생성자가 뭐가있고 등등. 즉, 설계도 객체. 어떤 객체에 대해서 getClass를 호출하면, 
+							설계도 객체를 준다. 이 설계도 객체를 통해서 1. 객체를 생성 가능 2. 객체에 대한 정보 얻음) 
+
+ch9-2 equals(Object obj)
+- 객체 자신(this)과 주어진 객체(obj)를 비교한다. 같으면 true, 다르면 false.
+- Object클래스의 equals()는 객체의 주소를 비교(참조변수 값 비교)
+주소가 아닌 value를 비교하려면 Object의 equals()를 오버라이딩해서 사용.
+
+ch9-3 equals(Object obj)의 오버라이딩
+- 인스턴스 변수(iv)의 값을 비교하도록 equals()를 오버라이딩해야한다.
+(cv: 객체마다 공통, iv: 객체마다 다름)
+
+
+
+ch9-4 hashCode()
+- 객체의 해시코드(hash code)를 반환하는 메서드
+(해시코드는 정수값이고, 해싱 알고리즘에서 사용한다.)
+- Object 클래스의 hashCode()는 객체의 주소를 int 로 변환해서 반환
+- equals()를 오버라이딩 하면, hashCode()도 오버라이딩 해야 한다.
+  equals()의 결과가 true인 두 객체의 해시코드는 같아야하기 때문*
+- System.identityHashCode(Object obj)는 Object 클래스의 hashCode()와 동일
+(그런데 equals는 주소가 아닌 iv를 가지고 비교하도록 오버라이딩 할때는 해시코드도 오버라이딩 하므로
+객체마다 다른 해시코드 반환하는 기능이 없어짐.)
+
+ch9-5~6 toString(), toString()의 오버라이딩
+- toString(): 객체를 문자열(String)으로 변환하기 위한 메서드
+Object 클래스의 toString()은 
+Card@19e0bfd
+클래스이름@Integer.toHexString(hashCode())
+ 
+ch9-7 String 클래스 <- 문자열을 다루기 위한 클래스
+- String클래스 = 데이터(char[]) + 메서드(문자열 관련)
+- 내용을 변경할 수 없는 불변(immutable) 클래스
+	a = a+b (ab) ab가 a에 들어가는게 아니라 완전히 새로운 문자열이 만들어짐.
+	a가 새로만들어짐 ab 주소를 가리키게됨.
+- 덧셈 연산자(+)를 이용한 문자열 결합은 성능이 떨어짐. (계속 새로운 문자열이 만들어지니까)
+	문자열의 결합이나 변경이 잦다면, 내용을 변경가능한 StringBuffer를 사용
+	
+ch9-8 문자열의 비교
+- String str = "abc"; 와 String str= new String("abc");의 비교
+	문자열 리터럴로 문자열을 만들면 하나의 문자열을 여러 참조변수가 공유한다.
+	new 연산자를 사용하면 항상 새로운 문자열이 만들어진다.
+	
+	문자열은 내용변경이 불가능하니 여러 참조변수가 공유해도 별 문제가 안된다.
+	굳이 같은 내용의 문자열을 여러번 만들 필요가 없다.
+	
+ch9-9 문자열 리터럴
+- 문자열 리터럴은 프로그램 실행시 자동으로 생성된다. (constant pool에 저장(상수 저장소))
+- 같은 내용의 문자열 리터럴은 하나만 만들어진다.
+	내용을 바꿀 수 없으니 여러 참조변수가 하나의 String 객체를 공유해도 문제 없다.
+
+ch9-10 빈 문자열 ("", empty string)
+- 내용이 없는 문자열. 크기가 0인 char형 배열을 저장하는 문자열
+- 크기가 0인 배열을 생성하는 것은 어느 타입이나 가능(c언어에서는 허용안하지만 java는 허용)
+	char 배열, int 배열 등
+
+ch9-11 String클래스의 생성자와 메서드
+- String(String s) : (잘 안씀) 주어진 문자열(s)을 갖는 String인스턴스를 생성한다.
+- String(char[] value) : 주어진 문자열(value)을 갖는 String인스턴스를 생성한다.
+	char 배열을 스트링으로 바꿈. (반대로 바꾸려면 toCharArray()라는 메서드가 있음)
+- String(StringBuffer buf) : StringBuffer인스턴스가 갖고 있는 문자열과 같은 내용의 String 인스턴스를 생성한다.
+- char charAt(int index) : 지정된 위치(index)에 있는 문자를 알려준다. (index는 0부터 시작)
+- int compareTo(String str) : 문자열(str)과 사전순서로 비교한다. 같으면 0을, 사전순으로 이전이면 음수를, 이후면 양수를 반환한다.
+- String concat(String str) : 문자열(str)을 뒤에 덧붙인다.
+- boolean contains(CharSequence s) : 지정된 문자열(s)이 포함되었는지 검사한다.
+- boolean endsWith(String suffix) : 지정된 문자열(suffix)로 끝나는지 검사한다.
+- boolean equals(Object obj) : 매개변수로 받은 문자열(obj)과 String인스턴스의 문자열을 비교한다. obj가 String이 아니거나
+	문자열이 다르면 false를 반환한다.
+- boolean equalsIgnoreCase(String str) : 문자열과 String인스턴스의 문자열을 대소문자 구분없이 비교한다.
+- int indexOf(int ch) : 주어진 문자(ch)가 문자열에 존재하는지 확인하여 위치(index)를 알려준다. 못 찾으면 -1을 반환한다.
+- int lastIndexOf(String str) : 지정된 문자열을 인스턴스의 문자열 끝에서 부터 찾아서 위치(index)를 알려준다. 못 찾으면 -1 반환.
+- int length() : 문자열의 길이를 알려준다.
+- String[] split(String regex) : 문자열을 지정된 분리자(regex)로 나누어 문자열 배열에 담아 반환한다.
+- String[] split(String regex, int limit) : 문자열을 지정된 분리자(regex)로 나누어 문자열배열에 담아 반환한다.
+	단, 문자열 전체를 지정된 수(limit)로 자른다.
+- boolean startsWith(Stirng prefix) : 주어진 문자열(prefix)로 시작하는지 검사한다.
+- String substring(int begin), String substring(int begin, int end) : 
+	주어진 시작위치(begin)부터 끝 위치(end)범위에 포함된 문자열을 얻는다. 이 때, 시작위치의 문자는 범위에 포함되지만, 끝 위치의 문자는
+	포함되지 않는다. (begin <= x < end)
+- String toLowerCase() : String인스턴스에 저장되어있는 모든 문자열을 소문자로 변환하여 반환한다.
+- String toUpperCase() : String인스턴스에 저장되어있는 모든 문자열을 대문자로 변환하여 반환한다.
+- String trim() : 문자열의 왼쪽 끝과 오른쪽 끝에 있는 공백을 없앤 결과를 반환한다. 이 때 문자열 중간에 있는 공백은 제거되지 않는다.
+- static String valueOf(boolean b) 등 기본형 여러종류 : 지정된 값을 문자열로 변환하여 반환한다. 참조변수의 경우, 
+	toString()을 호출한 결과를 반환한다.
+	
