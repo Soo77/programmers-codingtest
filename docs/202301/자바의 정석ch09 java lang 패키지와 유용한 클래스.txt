@@ -194,6 +194,7 @@ ch9-30 오토박싱&언박싱
 	컴파일러가 list.add(new Integer(10)); 이라고 자동으로 바꿔줌.
 	
 	int value = list.get(0); //언박싱. new Integer(10) -> 10
+	컴파일러가 list.get(0).intValue(); 로 자동으로 바꿔줌.
 	
 	
 	
