@@ -1,4 +1,4 @@
-package com.codingtest.practice.Java3rdEdition.exercise;
+package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 /*
 *  주어진 문자열에서 금지된 문자들을 제거하여 반환한다

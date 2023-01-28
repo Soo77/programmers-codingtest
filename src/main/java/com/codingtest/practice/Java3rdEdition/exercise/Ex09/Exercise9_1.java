@@ -1,4 +1,4 @@
-package com.codingtest.practice.Java3rdEdition.exercise;
+package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 /*
 * 다음과 같은 실행결과를 얻도록 클래스의 를 멤버변수인 SutdaCard equals() num,

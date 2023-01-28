@@ -1,4 +1,4 @@
-package com.codingtest.practice.Java3rdEdition.exercise;
+package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 public class Excercise9_3 {
     public static void main(String[] args) {

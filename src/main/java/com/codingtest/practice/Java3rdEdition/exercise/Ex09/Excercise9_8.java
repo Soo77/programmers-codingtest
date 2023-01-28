@@ -1,4 +1,4 @@
-package com.codingtest.practice.Java3rdEdition.exercise;
+package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 /*
 *  주어진 값을 반올림하여 소수점 이하 자리의 값을 반환한다.

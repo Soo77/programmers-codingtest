@@ -1,4 +1,4 @@
-package com.codingtest.practice.Java3rdEdition.exercise;
+package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 /*
 * 주어진 문자열을 지정된 크기의 문자열로 변환한다 나머지 공간은 공백으로 채운다
