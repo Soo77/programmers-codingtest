@@ -2,6 +2,8 @@ package com.codingtest.practice.Java3rdEdition.exercise.Ex09;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
 * 화면으로부터 전화번호의 일부를 입력받아 일치하는 전화번호를
@@ -14,8 +16,8 @@ public class Excercise9_14 {
     public static void main(String[] args) {
         String[] phoneNumArr = {
                 "012-3456-7890",
-                "099-1456-7890",
-                "088-1346-9870",
+                "099-1456-7980",
+                "088-2346-9870",
                 "013-3456-7890"
         };
 
@@ -24,7 +26,10 @@ public class Excercise9_14 {
 
         while(true) {
             System.out.print(">>");
-            String input = s.nextLine().trim();
+            String input = s.nextLine();
+            System.out.println("firstInput:"+input);
+            input = input.trim();
+            System.out.println("input:"+input);
 
             if(input.equals("")) {
                 continue;
@@ -33,6 +38,22 @@ public class Excercise9_14 {
             }
 
             //코드넣기
+            String pattern = ".*"+input+".*"; //input을 포함하는 모든 문자열
+            Pattern p = Pattern.compile(pattern);
+
+            for(int i=0; i<phoneNumArr.length; i++) {
+                String phoneNum = phoneNumArr[i];
+                String tmp = phoneNum.replace("-", ""); //phoneNum에서 '-'를 제거
+
+                Matcher m = p.matcher(tmp);
+                System.out.println("m:"+m);
+
+                if(m.find()) {  // 패턴과 일치하면, list에 phoneNum을 추가한다.
+                    list.add(phoneNum);
+                }
+            }
+
+
 
             if(list.size() > 0) {
                 System.out.println(list);
