@@ -1,4 +1,6 @@
+/*
 package com.codingtest.practice.Java3rdEdition.exercise.Ex07;
+*/
 /*
 * 오버라이딩의 정의와 필요섣?
 * 조상 클래스를 상속받아서 조상클래스에 있는 메서드와 선언부가 같은 메서드를 재정의하는것.
@@ -28,7 +30,8 @@ package com.codingtest.practice.Java3rdEdition.exercise.Ex07;
 * final 클래스 : 변경될 수 없는 클래스, 확장될 수 없는 클래스가 된다.
 * final 메서드 : 변경될 수 없는 메서드, 오버라이딩을 통해 재정의 될 수 없다.
 * final 멤버변수, 지역변수 : 값을 변경할 수 없는 상수가 된다.
-* */
+* *//*
+
 class SutdaDeck {
     final int CARD_NUM=20;
     SutdaCard[] cards = new SutdaCard[CARD_NUM];
@@ -101,3 +104,4 @@ public class Ex7_1 {
         System.out.println(deck.pick(0));
     }
 }
+*/

@@ -24,6 +24,13 @@ public class Ex7_7 {
         Car car = new Car();
         FireEngine fe = new FireEngine();
         FireEngine fe2 = null;
+        //FireEngine fe3 = (FireEngine)car;
+        if(fe instanceof Car) {
+            System.out.println("11true");
+            fe = (FireEngine)car;
+            System.out.println(fe.toString());
+        }
+        //System.out.println(fe3.toString());
 
         fe.water();
 
