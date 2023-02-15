@@ -1,25 +1,24 @@
 package com.codingtest.practice.Java3rdEdition.exercise.Ex07;
 
-class Outer2 {
-    int value = 10;
-
+class Outer {
+    int value=10;
     class Inner {
-        int value = 20;
+        int value=20;
         void method1() {
-            int value = 30;
-
-            System.out.println(value);
-            System.out.println(this.value);
-            System.out.println(Outer2.this.value);
+            int value=30;
+            System.out.println(/* (1) */value);
+            System.out.println(/* (2) */this.value);
+            System.out.println(/* (3) */Outer.this.value);
         }
-    }
-}
+    } // Inner클래스의 끝
+} // Outer클래스의 끝
 public class Ex7_27 {
+    public static void main(String args[]) {
+        Outer.Inner inner = new Outer().new Inner();
 
-    public static void main(String[] args) {
-        Outer2.Inner inner = new Outer2().new Inner();
         inner.method1();
     }
-
-
 }
+
+
+
