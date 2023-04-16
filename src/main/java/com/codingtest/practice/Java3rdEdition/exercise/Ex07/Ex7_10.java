@@ -1,58 +1,53 @@
 package com.codingtest.practice.Java3rdEdition.exercise.Ex07;
+
 /*
-*
-* 7-12
+* 7_12
 * c
-* 7-13
-* Math클래스 안에는 모든 메서드가 static 메서드이고 인스턴수변수가 없기떄ㅜㅁㄴ에
-* 객체를 생성할 필요가 없기떄문ㅇ
 *
+* 7_13
+* Math클래스의 생성자는 접근제이저가 private인 이유?
+* Math클래스는 몇개의 상수와 static 메서드만으로 구성되어 있기 때문
 *
-* 답지>> Math클래스의 모든 메서드가 static 메서드이고 인스턴스변수가
-* 존재하지 않기 때문에 객체를 생성할 필요가 없기 때문.
 *
 *
 * */
+
 class MyTv2 {
     boolean isPowerOn;
     int channel;
-    int volumne;
-    int prev;
-
+    int volume;
     final int MAX_VOLUME = 100;
     final int MIN_VOLUME = 0;
     final int MAX_CHANNEL = 100;
     final int MIN_CHANNEL = 1;
+    int prev;
+
+    public void setChannel(int ch) {
+        if(ch < MIN_CHANNEL || ch > MAX_CHANNEL) return;
+        System.out.println("이전채널에"+ch+"저장"+ ", this.ch:"+this.channel);
+        prev = this.channel;
+        this.channel = ch;
+    }
 
     public int getChannel() {
         return channel;
     }
 
-    public void setChannel(int channel) {
-        if(channel < MIN_CHANNEL || channel > MAX_CHANNEL) return;
-        System.out.println("이전채널:"+this.channel);
-        this.prev = this.channel;
-        System.out.println("바꿀채널:"+channel);
-        this.channel = channel;
+    public void setVolume(int vol) {
+        if(vol < MIN_VOLUME && vol > MAX_VOLUME) return;
+        this.volume = vol;
     }
 
     public int getVolume() {
-        return volumne;
+        return volume;
     }
 
-    public void setVolume(int volumne) {
-        if(MIN_VOLUME < 0 || MAX_VOLUME > 100) return;
-        this.volumne = volumne;
-    }
-
-    public void gotoPrevChannel() {
+    void gotoPrevChannel() {
         setChannel(prev);
     }
 }
-
 public class Ex7_10 {
-    public static void main(String[] args) {
-
+    public static void main(String args[]) {
         MyTv2 t = new MyTv2();
         t.setChannel(10);
         System.out.println("CH:"+t.getChannel());
@@ -62,6 +57,5 @@ public class Ex7_10 {
         System.out.println("CH:"+t.getChannel());
         t.gotoPrevChannel();
         System.out.println("CH:"+t.getChannel());
-
     }
 }

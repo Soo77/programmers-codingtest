@@ -1,22 +1,69 @@
 package com.codingtest.practice.Java3rdEdition.exercise.Ex07;
 /*
-* e
+*
+* 7-24
+*
+*
 *
 * */
 public class Ex7_22 {
-    public static void main(String[] args) {
-
-        Shape[] arr = {new Circle(5.0), new Rectangle(3,4), new Circle(1)};
-        System.out.println(" :"+sumArea(arr));
-    }
 
     private static double sumArea(Shape[] arr) {
         double result = 0.0;
-        for(int i=0; i<arr.length; i++) {
-            Shape shape = arr[i];
-            result += shape.calcArea();
+        for(int i=0; i<arr.length ;i++) {
+            result += arr[i].calcArea();
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+
+        Shape[] arr = {new Circle(5.0), new Rectangle(3,4), new Circle(1)};
+        System.out.println(" 면적의 합 :"+sumArea(arr));
+    }
+}
+
+class Circle extends Shape {
+    double r;
+
+    Circle(double r) {
+        this(new Point(0,0), r);
+    }
+
+    Circle(Point p, double r) {
+        super(p);
+        this.r = r;
+    }
+
+    @Override
+    double calcArea() {
+        return r*r*Math.PI;
+    }
+}
+
+class Rectangle extends Shape {
+
+    double width;
+    double height;
+
+    Rectangle(double width, double height) {
+        this(new Point(0,0), width, height);
+    }
+
+    Rectangle(Point p, double width, double height) {
+        super(p);
+        this.width= width;
+        this.height = height;
+    }
+
+    @Override
+    double calcArea() {
+        return width * height;
+
+    }
+
+    boolean isSquare() {
+        return width*height!=0 && width==height;
     }
 }
 
@@ -36,51 +83,6 @@ abstract class Shape {
         this.p = p;
     }
 }
-
-class Circle extends Shape {
-    double r;
-
-    Circle(double r) {
-        this(new Point(0,0), r);
-    }
-
-    public Circle(Point point, double r) {
-        super(point);
-        this.r = r;
-    }
-
-    @Override
-    double calcArea() {
-        return r*r*Math.PI;
-    }
-}
-
-class Rectangle extends Shape {
-    double width;
-    double height;
-
-    Rectangle(double width, double height) {
-        this(new Point(0,0), width, height);
-    }
-
-    public Rectangle(Point point, double width, double height) {
-        super(point);
-        this.width = width;
-        this.height = height;
-    }
-
-    @Override
-    double calcArea() {
-        return width*height;
-    }
-
-    boolean isSquare() {
-        return (width*height != 0) && (width == height);
-    }
-
-
-}
-
 class Point {
     int x;
     int y;
