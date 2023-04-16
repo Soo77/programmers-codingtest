@@ -6,28 +6,73 @@ import java.util.Date;
 
 public class Excercise10_2 {
 
+    static int paycheckCount(Calendar from, Calendar to) {
+
+
+        int fromYear = from.get(Calendar.YEAR);
+        int fromMonth = from.get(Calendar.MONTH);
+        int fromDay = from.get(Calendar.DAY_OF_MONTH);
+
+        int toYear = to.get(Calendar.YEAR);
+        int toMonth = to.get(Calendar.MONTH);
+        int toDay = to.get(Calendar.DAY_OF_MONTH);
+
+        int monDiff = (toYear * 12 + toMonth) - (fromYear * 12 + fromMonth);
+
+        if(monDiff < 0) return 0;
+
+        if(fromDay <= 21 && toDay >= 21) monDiff ++;
+        if(fromDay > 21 && toDay < 21) monDiff -- ;
+
+
+        return monDiff;
+    }
+
+    /*static void printResult(Calendar from, Calendar to) {
+        Date fromDate = from.getTime();
+        Date toDate = to.getTime();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        System.out.print(sdf.format(fromDate) + "~"
+                + sdf.format(toDate)+":");
+        System.out.println(paycheckCount(from, to));
+    }*/
+
+    static void printResult(Calendar from, Calendar to) {
+        Date fromDate = from.getTime();
+        Date toDate = to.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.print(sdf.format(fromDate)+" ~ "
+                +sdf.format(toDate)+":");
+        System.out.println(paycheckCount(from, to));
+    }
+
+
     public static void main(String[] args) {
-
-        Calendar cal = Calendar.getInstance();
-
-        cal.set(2010,0,1);
+        Calendar fromCal = Calendar.getInstance();
+        Calendar toCal = Calendar.getInstance();;
 
 
-        for(int i=0; i<12; i++) {
-            int weekday = cal.get(Calendar.DAY_OF_WEEK);
+       fromCal.set(2010,0,1);
+        toCal.set(2010,0,1);
+        printResult(fromCal, toCal);
+        fromCal.set(2010,0,21);
+        toCal.set(2010,0,21);
+        printResult(fromCal, toCal);
 
-            int secondSunday = (weekday==1) ? 8 : 16 - weekday;
-
-            cal.set(Calendar.DAY_OF_MONTH, secondSunday);
-            Date d = cal.getTime();
-            System.out.println(new SimpleDateFormat("yyyy-MM-dd은 F번째 E요일입니다." +
-                    "G연대, 년의 w번째주, 월의 W번째주, 월의 d번째일, a는 오전오후," +
-                    "\n, H는 시간 m분 s초, z, Z").format(d));
-
-            cal.add(Calendar.MONTH,1);
-            cal.set(Calendar.DAY_OF_MONTH,1);
-        }
-
+        fromCal.set(2010,0,1);
+        toCal.set(2010,2,1);
+        printResult(fromCal, toCal);
+        fromCal.set(2010,0,1);
+        toCal.set(2010,2,23);
+        printResult(fromCal, toCal);
+        fromCal.set(2010,0,23);
+        toCal.set(2010,2,21);
+        printResult(fromCal, toCal);
+        fromCal.set(2011,0,22);
+        toCal.set(2010,2,21);
+        printResult(fromCal, toCal);
 
     }
 }
