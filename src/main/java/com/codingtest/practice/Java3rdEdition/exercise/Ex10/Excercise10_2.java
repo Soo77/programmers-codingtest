@@ -11,11 +11,11 @@ public class Excercise10_2 {
 
         int fromYear = from.get(Calendar.YEAR);
         int fromMonth = from.get(Calendar.MONTH);
-        int fromDay = from.get(Calendar.DAY_OF_MONTH);
+        int fromDay = from.get(Calendar.DATE);
 
         int toYear = to.get(Calendar.YEAR);
         int toMonth = to.get(Calendar.MONTH);
-        int toDay = to.get(Calendar.DAY_OF_MONTH);
+        int toDay = to.get(Calendar.DATE);
 
         int monDiff = (toYear * 12 + toMonth) - (fromYear * 12 + fromMonth);
 
