@@ -1,3 +1,4 @@
+/*
 package com.codingtest.practice.Java3rdEdition.exercise.Ex11;
 
 import java.util.ArrayList;
@@ -58,3 +59,4 @@ public class Excercies11_5 {
             System.out.println(it.next());
     }
 }
+*/
