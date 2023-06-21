@@ -5,13 +5,14 @@ import java.io.*;
 public class n10448 {
 
     private static int findTriNum(int num) {
-        int max = (num/2)+1;
         //System.out.println("max:"+max);
+        int max = 45;
 
         for(int i=1; i<max; i++) {
             for(int j=i; j<max; j++) {
                 for(int k=j; k<max; k++) {
                     if((i*(i+1) + j*(j+1) + k*(k+1)) == (num*2)) {
+                        //System.out.println(i+","+j+","+k);
                         return 1;
                     }
                 }
