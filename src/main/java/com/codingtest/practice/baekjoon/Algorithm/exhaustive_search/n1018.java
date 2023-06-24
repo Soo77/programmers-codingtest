@@ -1,17 +1,13 @@
+package com.codingtest.practice.baekjoon.Algorithm.exhaustive_search;
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class n1018 {
     public static void main(String[] args) throws IOException {
-
-
-
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-       
         StringTokenizer st = new StringTokenizer(br.readLine());
         int row = Integer.parseInt(st.nextToken());
         int col = Integer.parseInt(st.nextToken());
