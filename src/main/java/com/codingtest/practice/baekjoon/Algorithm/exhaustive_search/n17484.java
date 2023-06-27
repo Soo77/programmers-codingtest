@@ -1,4 +1,5 @@
 package com.codingtest.practice.baekjoon.Algorithm.exhaustive_search;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -23,6 +24,7 @@ public class n17484 {
 	static int[] visited;
 
 	static int row, col;
+	static int[] dx, dy;
 
     public static void main(String[] args) throws IOException {
 
@@ -42,12 +44,10 @@ public class n17484 {
 		}
 
         for(int i=0; i<col; i++) {
-			visited = new int[row];
-			visited[0] = i;
-			dfs(1, i, -1);
+        	visited = new int[row];
+        	visited[0] = i;
+        	dfs(1, i, -1);
 		}
-
-
 
 
 		bw.write( min+"");
@@ -67,16 +67,19 @@ public class n17484 {
 
 		for(int i=0; i<3; i++) {
 			int dy = y + ydir[i];
-			if(isValidPosition(dy) && dir != i) {
+			//System.out.println(y+"+"+ydir[i]+"="+dy);
+			if(isValidPosition(dy) && dir != i ) {
 				visited[depth] = dy;
+				System.out.println(depth+1+","+ dy+","+ i);
 				dfs(depth+1, dy, i);
 			}
 		}
 	}
 
 	private static boolean isValidPosition(int y) {
-    	if(y<0 || y>=col)
+    	if(y<0 || y>=col) {
     		return false;
+		}
     	return true;
 	}
 

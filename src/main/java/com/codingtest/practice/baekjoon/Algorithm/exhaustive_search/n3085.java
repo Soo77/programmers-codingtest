@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Main {
+public class n3085 {
 
 	static char[][] candy;
     static int N;
