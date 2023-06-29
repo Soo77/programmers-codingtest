@@ -1,88 +1,70 @@
 package com.codingtest.practice.baekjoon.Algorithm.exhaustive_search;
 
 import java.io.*;
-import java.util.StringTokenizer;
 
-//DP
-/*
-* DP(다이나믹 프로그래밍)
-* 하나의 큰 문제를 여러 개의 작은 문제로 나누어서 그 결과를
-* 저장하여 다시 큰 문제를 해결할 때 사용
-*
-* DP가 적용되기 위해서는 2가지 조건을 만족해야함.
-* 1) Overlapping Subproblems(겹치는 부분 문제)
-* 2) Optimal Substructure(최적 부분 구조)
-*
-*
-*
-* */
-public class n17484 {
+// 숫자 야구
+public class n2503 {
 
-	static int min = Integer.MAX_VALUE;
-	static int fuel[][];
-	static int[] ydir = {-1, 0, 1};
-	static int[] visited;
-
-	static int row, col;
-	static int[] dx, dy;
+	static int N;
+	static BaseBall[] box;
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        row = Integer.parseInt(st.nextToken());
-        col = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(br.readLine());
+		box = new BaseBall[N];
 
-        fuel = new int[row][col];
-        for(int i=0; i<row; i++) {
-			st = new StringTokenizer(br.readLine());
-        	for(int j=0; j<col; j++) {
-        		fuel[i][j] = Integer.parseInt(st.nextToken());
+        for(int i=0; i<N; i++) {
+			box[i] = new BaseBall(br.readLine().split(" "));
+		}
+
+        int answer = 0;
+        for(int i=123; i<=789; i++) {
+
+        	String temp = String.valueOf(i);
+        	String[] allNumArr = temp.split("");
+
+        	int s1 = Integer.parseInt(allNumArr[0]);
+        	int s2 = Integer.parseInt(allNumArr[1]);
+        	int s3 = Integer.parseInt(allNumArr[2]);
+
+        	if(s1 == s2 || s1 == s3 || s2 == s3 ||
+					(s1 == 0 || s2 == 0 || s3 ==0)) {
+        		continue;
+			}
+
+        	if(check(allNumArr)) {
+        		answer++;
 			}
 		}
 
-        for(int i=0; i<col; i++) {
-        	visited = new int[row];
-        	visited[0] = i;
-        	dfs(1, i, -1);
-		}
 
-
-		bw.write( min+"");
+		bw.write(answer+"");
 		bw.flush();
 	}
 
-	private static void dfs(int depth, int y, int dir) {
-		if(depth == row) {
-			int sum = fuel[0][visited[0]];
-			for(int i=1; i<row; i++) {
-				sum += fuel[i][visited[i]];
-			}
+	private static boolean check(String[] allNumArr) {
 
-			min = min > sum ? sum : min;
-			return;
-		}
-
-		for(int i=0; i<3; i++) {
-			int dy = y + ydir[i];
-			//System.out.println(y+"+"+ydir[i]+"="+dy);
-			if(isValidPosition(dy) && dir != i ) {
-				visited[depth] = dy;
-				System.out.println(depth+1+","+ dy+","+ i);
-				dfs(depth+1, dy, i);
-			}
-		}
-	}
-
-	private static boolean isValidPosition(int y) {
-    	if(y<0 || y>=col) {
-    		return false;
-		}
     	return true;
 	}
 
 
+	private static class BaseBall {
+    	int[] number = new int[3];
+    	int strike = 0;
+    	int ball = 0;
+
+		public BaseBall(String[] input) {
+			this.strike = Integer.parseInt(input[1]);
+			this.ball = Integer.parseInt(input[2]);
+
+			String[] temp = input[0].split("");
+			for(int i=0; i<3; i++) {
+				number[i] = Integer.parseInt(temp[i]);
+			}
+		}
+	}
 }
 
