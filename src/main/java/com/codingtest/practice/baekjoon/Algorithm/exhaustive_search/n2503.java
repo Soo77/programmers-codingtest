@@ -1,6 +1,7 @@
 package com.codingtest.practice.baekjoon.Algorithm.exhaustive_search;
 
 import java.io.*;
+import java.util.Arrays;
 
 // 숫자 야구
 public class n2503 {
@@ -13,7 +14,7 @@ public class n2503 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int N = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
 		box = new BaseBall[N];
 
         for(int i=0; i<N; i++) {
@@ -47,7 +48,39 @@ public class n2503 {
 
 	private static boolean check(String[] allNumArr) {
 
-    	return true;
+    	int[] result = new int[2];
+
+    	for(int i=0; i<N; i++) {
+    		int[] boxArr = box[i].number;
+			result = new int[2];
+
+    		for(int j=0; j<3; j++) {
+    			int allNum = Integer.parseInt(allNumArr[j]);
+
+				for(int k=0; k<3; k++) {
+					if(boxArr[k] == allNum) {
+						System.out.println(Arrays.toString(boxArr)+","+Arrays.toString(allNumArr));
+						System.out.println("@@"+boxArr[k]+","+allNum);
+						System.out.println(k+","+j);
+
+						if(k==j) {
+							result[0]++;
+						} else {
+							result[1]++;
+						}
+					}
+				}
+
+			}
+			System.out.println("result:"+Arrays.toString(result));
+			if(!(box[i].strike == result[0] &&
+					box[i].ball == result[1])) {
+
+				return false;
+			}
+    	}
+
+		return true;
 	}
 
 
@@ -62,7 +95,7 @@ public class n2503 {
 
 			String[] temp = input[0].split("");
 			for(int i=0; i<3; i++) {
-				number[i] = Integer.parseInt(temp[i]);
+				this.number[i] = Integer.parseInt(temp[i]);
 			}
 		}
 	}
