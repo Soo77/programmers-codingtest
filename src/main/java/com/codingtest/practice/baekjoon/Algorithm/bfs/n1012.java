@@ -1,4 +1,4 @@
-package com.codingtest.practice.baekjoon.Algorithm.dfs;
+package com.codingtest.practice.baekjoon.Algorithm.bfs;
 
 
 import java.io.*;
@@ -13,8 +13,6 @@ public class n1012 {
 
     public static void main(String[] args) throws IOException {
 
-
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
@@ -28,7 +26,7 @@ public class n1012 {
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
             K = Integer.parseInt(st.nextToken());
-           cabbage = new int[N][M];
+            cabbage = new int[N][M];
             visited = new boolean[N][M];
             worm = 0;
             for(int j=0; j<K; j++) {
@@ -41,7 +39,7 @@ public class n1012 {
             for(int j=0; j<N; j++) {
                 for(int k=0; k<M; k++) {
                     if(cabbage[j][k] == 1 && !visited[j][k]) {
-                        dfs(j,k);
+                        bfs(j,k);
                         worm ++;
                     }
                 }
@@ -52,24 +50,37 @@ public class n1012 {
         bw.flush();
     }
 
-    private static void dfs(int startX, int startY) {
+    private static void bfs(int startX, int startY) {
+        Queue<int[]> queue = new LinkedList<>();
+
+        queue.offer(new int[] {startX, startY});
+        // 저장
+
         visited[startX][startY] = true;
 
-        int[] dx = {-1, 1, 0, 0};
-        int[] dy = {0, 0, -1, 1};
+        int[] X = {0, 0, -1, 1};
+        int[] Y = {-1, 1, 0, 0};
 
-        for(int k=0; k<4; k++) {
-            int x = startX + dx[k];
-            int y = startY + dy[k];
+        while(!queue.isEmpty()) {
+            int[] poll = queue.poll();
 
-            if(x < 0 || x >= N || y < 0 || y >= M) {
-                continue;
-            }
+            for(int i=0; i<4; i++) {
+                int x = poll[0] + X[i];
+                int y = poll[1] + Y[i];
 
-            if(cabbage[x][y] == 1 && !visited[x][y]) {
-                dfs(x,y);
+                if(x<0 || x>= N || y<0 || y>=M) {
+                    continue;
+                }
+
+                if(cabbage[x][y] == 1 && !visited[x][y]) {
+                    queue.offer(new int[] {x, y});
+
+                    visited[x][y] = true;
+                }
             }
         }
+
+
 
     }
 
