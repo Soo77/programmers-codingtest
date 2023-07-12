@@ -16,6 +16,7 @@ public class n1743 {
     private static int ny[] = {-1,1,0,0};
 
     private static int count = 0;
+    private static int max = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
 
@@ -51,13 +52,14 @@ public class n1743 {
             for(int j=1; j<=M; j++) {
                 if(map[i][j] == 1 && !visited[i][j]) {
                     //.out.println("main :"+i+", "+j);
+                    count = 1;
                     dfs(i,j);
+                    max = Math.max(max, count);
                 }
             }
         }
 
-        count++;
-        bw.write(count+"");
+        bw.write(max+"");
         bw.flush();
     }
 
