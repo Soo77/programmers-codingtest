@@ -2,6 +2,8 @@ package com.codingtest.practice.baekjoon.Algorithm.dfs;
 
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class n1260 {
@@ -15,6 +17,8 @@ public class n1260 {
     private static int count = 0;
 
     private static StringBuilder sb = new StringBuilder();
+
+    private static Queue<Integer> q = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -55,8 +59,29 @@ public class n1260 {
 
         dfs(V);
 
+        visited = new boolean[N+1];
+        sb.append("\n");
+        bfs(V);
+
         bw.write(sb+"");
         bw.flush();
+    }
+
+    private static void bfs(int start) {
+        q.add(start);
+        visited[start] = true;
+
+        while(!q.isEmpty()) {
+            start = q.poll();
+            sb.append(start+" ");
+
+            for(int i=1; i<=N; i++) {
+                if(map[start][i] == 1 && !visited[i]) {
+                    q.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
     }
 
     private static void dfs(int start) {
