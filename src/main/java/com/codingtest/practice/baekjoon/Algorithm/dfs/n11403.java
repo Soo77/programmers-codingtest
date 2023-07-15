@@ -32,6 +32,7 @@ public class n11403 {
 
         for(int i=0; i<N; i++) {
             for(int j=0; j<N; j++) {
+                //System.out.println(j+"를 false로");
                 visited[j] = false;
             }
 
