@@ -37,6 +37,7 @@ public class n2668 {
             visited[i] = true;
             num = i;
             System.out.println("num:"+num);
+            System.out.println("dfs메인 시작");
             dfs(i);
             System.out.println(i+"번째 체크풀기");
             visited[i] = false;
@@ -63,6 +64,7 @@ public class n2668 {
         if(!visited[map[i]]) {
             System.out.println(map[i]+"에 방문을 안했구나~");
             visited[map[i]] = true;
+            System.out.println("dfs 서브시작");
             dfs(map[i]);
             System.out.println(map[i]+"체크풀기");
             visited[map[i]] = false;
