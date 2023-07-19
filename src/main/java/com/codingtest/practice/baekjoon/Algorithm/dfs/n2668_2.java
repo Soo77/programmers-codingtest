@@ -3,7 +3,6 @@ package com.codingtest.practice.baekjoon.Algorithm.dfs;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class n2668_2 {
@@ -53,7 +52,10 @@ public class n2668_2 {
     }
 
     private static void dfs(int start, int target) {
-        Arrays.toString(visited);
+        for(int i=0; i<visited.length; i++) {
+            System.out.print(visited[i]+",");
+        }
+        System.out.println();
         if(visited[map[1][start]] == false) {
             visited[map[1][start]] = true;
             System.out.println("sub start, map[1]["+start+"]:"+map[1][start]+", target:"+target);
