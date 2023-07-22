@@ -44,9 +44,6 @@ public class n9466 {
                 visited[j] = false;
             }
 
-            //bw.write("result size:"+result.size() + "\n");
-            //for(Integer c : result) bw.write(c + " ");
-            //System.out.println();
             bw.write((map.length - result.size() - 1) +  "\n");
         }
 
