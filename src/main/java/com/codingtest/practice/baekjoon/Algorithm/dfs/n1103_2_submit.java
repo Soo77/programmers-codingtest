@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class n1103_2 {
+public class n1103_2_submit {
 
     static int N,M;
     static int board[][];
@@ -54,7 +54,7 @@ public class n1103_2 {
             }
         }
 
-        for(int i=1; i<=N; i++) {
+        /*for(int i=1; i<=N; i++) {
             for(int j=1; j<=M; j++) {
                 System.out.print(board[i][j]);
             }
@@ -66,26 +66,18 @@ public class n1103_2 {
                 System.out.print("("+i+","+j+"), ");
             }
             System.out.println();
-        }
+        }*/
 
-        sb.append("(1,1) -> ");
-        Slist.add("(1,1) -> ");
+        //sb.append("(1,1) -> ");
+        //Slist.add("(1,1) -> ");
         stlist.push("(1,1) -> ");
         dfs(1,1);
 
-        System.out.println(sb);
-        for(int i=0; i<Slist.size(); i++) {
-            System.out.print(Slist.get(i));
-        }
-        for(int i=0; i<stlist.size(); i++) {
-            System.out.print(stlist.get(i));
-        }
 
         if (flag.equals("recur")) {
-            bw.write("\n재귀: -1");
+            bw.write("-1");
         } else {
-            bw.write("\ncount:"+count +"\n");
-            bw.write("max:"+max);
+            bw.write(max+ "");
         }
 
 
@@ -95,8 +87,6 @@ public class n1103_2 {
     private static void dfs(int startX, int startY) {
 
         if(flag.equals("recur")) {
-            System.out.println("재귀일때의 miniS:"+miniS);
-            System.out.println("재귀구만 튀튀");
             return;
         }
 
@@ -122,11 +112,6 @@ public class n1103_2 {
                 continue;
             }
 
-            a++;
-            System.out.println("("+startX+","+startY+") -> ("+x+","+y+") a++ a:"+a );
-            sb.append("("+x+","+y+") -> ");
-            Slist.add("("+x+","+y+") -> ");
-            miniS += "("+x+","+y+") -> ";
             stlist.push("("+x+","+y+") -> ");
 
             if(beforeX == x && beforeY == y) {
@@ -139,36 +124,18 @@ public class n1103_2 {
 
             visited[x][y] = true;
 
-            for(int j=1; j<=N; j++) {
-                for(int k=1; k<=M; k++) {
-                    System.out.print(visited[j][k]+",");
-                }
-                System.out.println();
-            }
-
-            System.out.println("sub dfs start");
             dfs(x,y);
 
-            for(int j=0; j<stlist.size(); j++) {
-                System.out.print(stlist.get(j));
-            }
-            System.out.println("  stlist크기:"+stlist.size());
             max = Math.max(max, stlist.size());
 
             if(visited[x][y]) {
-                System.out.println("여기가 어디야? 이거지울까? ("+x+","+y+")");
                 stlist.pop();
             }
 
             visited[x][y] = false;
             //a--;
-            System.out.println("inner: "+sb);
-            System.out.print("stlist:");
 
 
-            count++;
-            System.out.println("count:"+count);
-            System.out.println("sub dfs end count++ count:"+count);
         }
     }
 }
