@@ -12,7 +12,7 @@ H2H1
 3 4
 3552
 5555
-2553(싸이클)
+2553
 * */
 
 import java.io.*;
@@ -25,6 +25,7 @@ public class n1103_2 {
     static int N,M;
     static int board[][];
     static boolean visited[][];
+    static boolean finished[][];
     static String flag = "";
     static StringBuilder sb = new StringBuilder();
     static String miniS = "";
@@ -32,6 +33,8 @@ public class n1103_2 {
     static int beforeX, beforeY = 0;
     static ArrayList<String> Slist = new ArrayList<>();
     static Stack<String> stlist = new Stack<>();
+
+    static ArrayList<String> firstList = new ArrayList<>();
 
     static int max = 1;
 
@@ -49,6 +52,7 @@ public class n1103_2 {
         M = Integer.parseInt(st.nextToken());
         board = new int[N+1][M+1];
         visited = new boolean[N+1][M+1];
+        finished = new boolean[N+1][M+1];
 
         for(int i=1; i<=N; i++) {
             String[] s = br.readLine().split("");
@@ -87,6 +91,10 @@ public class n1103_2 {
         for(int i=0; i<stlist.size(); i++) {
             System.out.print(stlist.get(i));
         }
+        System.out.print("\nfirstList:");
+        for(int i=0; i<firstList.size(); i++) {
+            System.out.print(firstList.get(i));
+        }
 
         if (flag.equals("recur")) {
             bw.write("\n재귀: -1");
@@ -100,6 +108,8 @@ public class n1103_2 {
     }
 
     private static void dfs(int startX, int startY) {
+
+        if(a==250) flag = "recur";
 
         if(flag.equals("recur")) {
             System.out.println("재귀일때의 miniS:"+miniS);
@@ -163,8 +173,15 @@ public class n1103_2 {
             max = Math.max(max, stlist.size());
 
             if(visited[x][y]) {
-                System.out.println("여기가 어디야? 이거지울까? ("+x+","+y+")");
+                System.out.println("여기가어디지 이걸지워야하나 ("+x+","+y+")");
                 stlist.pop();
+            }
+
+
+
+            if(stlist.size() == 1) {
+                System.out.println("여기가 어디지 이걸로 싸이클알수있나 ("+x+","+y+")");
+                firstList.add("("+x+","+y+")");
             }
 
             visited[x][y] = false;
@@ -173,9 +190,13 @@ public class n1103_2 {
             System.out.print("stlist:");
 
 
+
+
             count++;
-            System.out.println("count:"+count);
+            System.out.println("\ncount:"+count);
             System.out.println("sub dfs end count++ count:"+count);
+
+            finished[x][y]=true;
         }
     }
 }

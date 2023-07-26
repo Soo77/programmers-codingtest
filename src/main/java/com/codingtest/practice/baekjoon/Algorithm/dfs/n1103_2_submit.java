@@ -114,7 +114,7 @@ public class n1103_2_submit {
 
             stlist.push("("+x+","+y+") -> ");
 
-            if(beforeX == x && beforeY == y) {
+            if(beforeX == x && beforeY == y || (x == 1 && y == 1)) {
                 flag = "recur";
                 return;
             }
