@@ -9,10 +9,9 @@ H2H1
 * */
 
 import java.io.*;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class n1103_2_submit {
+public class n1103_2_submit_2 {
 
     static int N,M;
     static int board[][];
@@ -20,7 +19,6 @@ public class n1103_2_submit {
     static String flag = "";
     static int count = 0;
     static int beforeX, beforeY = 0;
-    static Stack<String> stlist = new Stack<>();
 
     static int[][] dp;
 
@@ -54,7 +52,6 @@ public class n1103_2_submit {
             }
         }
 
-        stlist.push("(1,1) -> ");
         dfs(1,1, 1);
 
         if (flag.equals("recur")) {
@@ -79,7 +76,6 @@ public class n1103_2_submit {
             //System.out.println(moveCount + " .. " + startY + " , "+ startX);
             max2 = moveCount;
         }
-        count = 1;
 
         for(int i=0; i<4; i++) {
             int x = startX;
@@ -100,8 +96,6 @@ public class n1103_2_submit {
                 continue;
             }
 
-            stlist.push("("+x+","+y+") -> ");
-
             if((beforeX == x && beforeY == y) || (visited[x][y])) {
                 flag = "recur";
                 return;
@@ -111,22 +105,9 @@ public class n1103_2_submit {
                 continue;
             }
 
-            beforeX = startX;
-            beforeY = startY;
-
             visited[x][y] = true;
-
             dfs(x,y,moveCount+1);
-
-            max = Math.max(max, stlist.size());
-
-            if(visited[x][y]) {
-                stlist.pop();
-            }
-
             visited[x][y] = false;
-            //a--;
-
 
         }
     }

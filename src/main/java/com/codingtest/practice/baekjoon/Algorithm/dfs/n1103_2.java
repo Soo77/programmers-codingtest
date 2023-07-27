@@ -146,10 +146,11 @@ public class n1103_2 {
             miniS += "("+x+","+y+") -> ";
             stlist.push("("+x+","+y+") -> ");
 
-            if(beforeX == x && beforeY == y) {
+            if( (beforeX == x && beforeY == y) || visited[x][y]) {
                 flag = "recur";
                 return;
             }
+
 
             beforeX = startX;
             beforeY = startY;
