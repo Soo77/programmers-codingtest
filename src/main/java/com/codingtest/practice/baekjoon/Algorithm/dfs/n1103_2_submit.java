@@ -9,6 +9,7 @@ H2H1
 * */
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -18,14 +19,13 @@ public class n1103_2_submit {
     static int board[][];
     static boolean visited[][];
     static String flag = "";
+    static StringBuilder sb = new StringBuilder();
     static int count = 0;
     static int beforeX, beforeY = 0;
+    static ArrayList<String> Slist = new ArrayList<>();
     static Stack<String> stlist = new Stack<>();
 
-    static int[][] dp;
-
     static int max = 1;
-    static int max2 = 1;
 
 
     public static void main(String[] args) throws IOException {
@@ -41,8 +41,6 @@ public class n1103_2_submit {
         board = new int[N+1][M+1];
         visited = new boolean[N+1][M+1];
 
-        dp = new int[N+1][M+1];
-
         for(int i=1; i<=N; i++) {
             String[] s = br.readLine().split("");
             for(int j=1; j<=M; j++) {
@@ -55,30 +53,25 @@ public class n1103_2_submit {
         }
 
         stlist.push("(1,1) -> ");
-        dfs(1,1, 1);
+        dfs(1,1);
 
         if (flag.equals("recur")) {
             bw.write("-1");
         } else {
-            bw.write(max2+ "");
+            bw.write(max+ "");
         }
 
 
         bw.flush();
     }
 
-    private static void dfs(int startX, int startY, int moveCount) {
+    private static void dfs(int startX, int startY) {
 
         if(flag.equals("recur")) {
             return;
         }
 
         int X = board[startX][startY] ;
-        dp[startX][startY] = moveCount;
-        if(moveCount > max2) {
-            //System.out.println(moveCount + " .. " + startY + " , "+ startX);
-            max2 = moveCount;
-        }
         count = 1;
 
         for(int i=0; i<4; i++) {
@@ -107,16 +100,12 @@ public class n1103_2_submit {
                 return;
             }
 
-            if(moveCount < dp[x][y]) {
-                continue;
-            }
-
-            beforeX = startX;
-            beforeY = startY;
+            //beforeX = startX;
+            //beforeY = startY;
 
             visited[x][y] = true;
 
-            dfs(x,y,moveCount+1);
+            dfs(x,y);
 
             max = Math.max(max, stlist.size());
 

@@ -23,7 +23,6 @@ public class n1103_2_submit_2 {
     static int[][] dp;
 
     static int max = 1;
-    static int max2 = 1;
 
 
     public static void main(String[] args) throws IOException {
@@ -57,7 +56,7 @@ public class n1103_2_submit_2 {
         if (flag.equals("recur")) {
             bw.write("-1");
         } else {
-            bw.write(max2+ "");
+            bw.write(max + "");
         }
 
 
@@ -72,10 +71,17 @@ public class n1103_2_submit_2 {
 
         int X = board[startX][startY] ;
         dp[startX][startY] = moveCount;
-        if(moveCount > max2) {
-            //System.out.println(moveCount + " .. " + startY + " , "+ startX);
-            max2 = moveCount;
+        if(moveCount > max) {
+            System.out.println(moveCount + " .. " + startY + " , "+ startX);
+            max = moveCount;
         }
+        for(int i=1; i<=N; i++) {
+            for(int j=1; j<=M; j++) {
+                System.out.print(dp[i][j]+",");
+            }
+            System.out.println();
+        }
+        System.out.println();
 
         for(int i=0; i<4; i++) {
             int x = startX;
@@ -96,7 +102,7 @@ public class n1103_2_submit_2 {
                 continue;
             }
 
-            if((beforeX == x && beforeY == y) || (visited[x][y])) {
+            if(visited[x][y]) {
                 flag = "recur";
                 return;
             }
