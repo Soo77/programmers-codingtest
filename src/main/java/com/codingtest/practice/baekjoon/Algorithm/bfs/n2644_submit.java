@@ -2,13 +2,12 @@ package com.codingtest.practice.baekjoon.Algorithm.bfs;
 
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 //촌수계산
-public class n2644 {
+public class n2644_submit {
 
     private static int n,m;
     private static int start,end;
@@ -42,19 +41,6 @@ public class n2644 {
             parents[x][y] = parents[y][x] = 1;
         }
 
-        for(int i=1; i<=n; i++) {
-            for(int j=1; j<=n; j++) {
-                System.out.print(parents[i][j] + ",");
-            }
-            System.out.println();
-        }
-
-        for(int i=1; i<=n; i++) {
-            for(int j=1; j<=n; j++) {
-                System.out.print("("+ i +","+j+")" + ",");
-            }
-            System.out.println();
-        }
 
         bfs(start, end);
 
@@ -69,23 +55,18 @@ public class n2644 {
 
         while(!q.isEmpty()) {
             int temp = q.poll();
-            System.out.println("poll: "+temp+"를 꺼내보입니다..");
             if(temp == end) {
-                System.out.println("temp:"+temp+", end:"+end+" 두개가 같으면 break!");
                 break;
             }
 
             for(int i=1; i<=n; i++) {
                 if(parents[temp][i] == 1 && !visited[i]) {
-                    System.out.println("안에 for문 add...." +i+"를 add.......");
                     q.add(i);
                     visited[i] = true;
-                    System.out.println("ans["+i+"] = ans["+temp+"] + 1"  );
                     ans[i] = ans[temp] + 1;
                 }
             }
 
-            System.out.println("ans:"+Arrays.toString(ans));
         }
 
     }
