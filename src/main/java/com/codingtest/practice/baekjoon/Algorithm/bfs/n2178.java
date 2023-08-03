@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 미로탐색
+// 미로탐색 //아직 작성중
 public class n2178 {
 
     static int N,M;
