@@ -97,6 +97,7 @@ public class n2178 {
 
                     System.out.println("que:"+que);
                     System.out.println("size:"+que.size());
+                    count++;
                     sum += que.size();
 
                     visited[x][y] = true;
