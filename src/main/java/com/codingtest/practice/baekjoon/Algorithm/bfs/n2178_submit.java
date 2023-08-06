@@ -2,32 +2,18 @@ package com.codingtest.practice.baekjoon.Algorithm.bfs;
 
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 // 미로탐색 //아직 작성중
-public class n2178 {
+public class n2178_submit {
 
     static int N,M;
     static int map[][];
     static boolean visited[][];
     static int count = 0;
     static int sum = 0;
-
-    //static Queue<int[]> que = new LinkedList<>();
-    //que 출력해보려고..
-    static Queue<int[]> que = new LinkedList<>() {
-        @Override public String toString() {
-            return "[" +
-                    stream()
-                            .map(Arrays::toString)
-                            .collect(Collectors.joining(", ")) +
-                    "]";
-        }
-    };
 
     public static void main(String[] args) throws IOException {
 
@@ -48,48 +34,15 @@ public class n2178 {
             }
         }
 
-        for(int i=1; i<=N; i++) {
-            for(int j=1; j<=M; j++) {
-                System.out.print(map[i][j] + ",");
-            }
-            System.out.println();
-        }
-
-        for(int i=1; i<=N; i++) {
-            for(int j=1; j<=M; j++) {
-                System.out.print("("+i+","+j+")" + ",");
-            }
-            System.out.println();
-        }
-
         bfs(1,1);
-
-        System.out.println("count:"+count);
-        System.out.println("sum:"+sum);
-
-        for(int i=1; i<=N; i++) {
-            for(int j=1; j<=M; j++) {
-                System.out.print(map[i][j] + ",");
-            }
-            System.out.println();
-        }
 
         System.out.println(map[N][M]);
 
     }
 
     private static void bfs(int startX, int startY) {
-        System.out.println("현재:" + startX+","+startY);
-        //que = new LinkedList<>();
-        Queue<int[]> que = new LinkedList<>() {
-            @Override public String toString() {
-                return "[" +
-                        stream()
-                                .map(Arrays::toString)
-                                .collect(Collectors.joining(", ")) +
-                        "]";
-            }
-        };
+        Queue<int[]> que = new LinkedList<>();
+
         visited[startX][startY] = true;
         que.add(new int[] {startX, startY});
 
@@ -102,8 +55,6 @@ public class n2178 {
             int[] poll = que.poll();
             int nowX = poll[0];
             int nowY = poll[1];
-            System.out.println("poll:"+Arrays.toString(poll));
-
 
             for(int i=0; i<4; i++) {
                 int x = poll[0] + X[i];
@@ -121,6 +72,4 @@ public class n2178 {
             }
         }
     }
-
-
 }
