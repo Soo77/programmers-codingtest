@@ -39,7 +39,7 @@ public class n7562 {
             visited = new boolean[N][N];
 
 
-/*
+
             for(int i=0; i<N; i++) {
                 for(int j=0; j<N; j++) {
                     System.out.print(map[i][j] + ",");
@@ -52,16 +52,16 @@ public class n7562 {
                     System.out.print("("+i+","+j+")" + ",");
                 }
                 System.out.println();
-            }*/
+            }
 
             bfs(startX,startY);
 
-/*            for(int i=0; i<N; i++) {
+            for(int i=0; i<N; i++) {
                 for(int j=0; j<N; j++) {
                     System.out.print(map[i][j] + "("+i+","+j+"), ");
                 }
                 System.out.println();
-            }*/
+            }
 
             bw.write(map[endX][endY]+"\n");
         }
