@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 안전영역
-public class n2468 {
+// 안전 영역
+public class n2468_submit {
 
     static int N,M;
     static int map[][];
@@ -40,6 +40,7 @@ public class n2468 {
             }
         }
 
+        System.out.println("max:"+max);
 
         for(int r=0; r<=max; r++) {
             for(int i=1; i<=N; i++) {
@@ -50,16 +51,27 @@ public class n2468 {
                     }
                 }
             }
+
+
+            for(int i=1; i<=N; i++) {
+                for(int j=1; j<=N; j++) {
+                    System.out.print(map[i][j] + ",");
+                }
+                System.out.println();
+            }
+            System.out.println();
+
             visited = new boolean[N+1][N+1];
             answer = Math.max(count,answer);
             count=0;
         }
 
-        System.out.print(answer);
+        System.out.println("answer:"+answer);
 
     }
 
     private static void bfs(int startX, int startY, int height) {
+        System.out.println("heigt:"+height);
         visited[startX][startY] = true;
         Queue<int[]> que = new LinkedList<>();
 
@@ -74,6 +86,7 @@ public class n2468 {
             int nowX = poll[0];
             int nowY = poll[1];
 
+
             for(int i=0; i<4; i++) {
                 int x = nowX + dx[i];
                 int y = nowY + dy[i];
@@ -82,12 +95,14 @@ public class n2468 {
                     continue;
                 }
 
+
                 if(map[x][y] > height && !visited[x][y]) {
                     visited[x][y] = true;
-                    map2[x][y] = 1;
                     que.add(new int[]{x, y});
                 }
             }
+
+
 
             //visited = new boolean[N+1][N+1];
         }
