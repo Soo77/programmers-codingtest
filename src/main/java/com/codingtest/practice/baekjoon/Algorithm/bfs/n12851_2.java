@@ -5,9 +5,9 @@ import java.io.*;
 import java.util.*;
 
 // 숨바꼭질2
-public class n12851 {
+public class n12851_2 {
 
-    static int[] dx = {-1,1,2};
+
     static int N,K;
     static int count = 0, result = Integer.MAX_VALUE;
 
@@ -25,14 +25,17 @@ public class n12851 {
         bfs(N);
 
         System.out.println(result);
-        System.out.println(count);
+        //System.out.println(count);
+
     }
 
     private static void bfs(int start) {
-
-        Queue<Integer> que = new LinkedList<Integer>();
-        int[] visited = new int[100001];
+        Queue<Integer> que = new LinkedList<>();
         que.add(start);
+
+        int visited[] = new int[100001];
+
+
 
         while(!que.isEmpty()) {
             int pos = que.poll();
@@ -45,24 +48,29 @@ public class n12851 {
                 count++;
             }
 
+            int[] dir = {-1,1,pos*2};
+
             for(int i=0; i<3; i++) {
+                //int next = pos + dir[i];
                 int next = pos;
                 if(i==2) {
-                    next = pos * dx[i];
+                    next = pos*2;
                 } else {
-                    next = pos + dx[i];
+                    next = pos + dir[i];
                 }
 
-                System.out.println("next:"+next+", pos:"+pos);
                 if(next >= 0 && next < 100001) {
-                    if(visited[next] == 0 || visited[next] >= visited[pos] + 1) {
-                        visited[next] = visited[pos] + 1;
+                    if(visited[next] == 0 || visited[next] >= visited[pos] + 1 ) {
+                        if(i==2) {
+                            visited[next] = visited[pos];
+                        } else {
+                            visited[next] = visited[pos] + 1;
+                        }
                         que.add(next);
                     }
                 }
             }
         }
-
     }
 
 
