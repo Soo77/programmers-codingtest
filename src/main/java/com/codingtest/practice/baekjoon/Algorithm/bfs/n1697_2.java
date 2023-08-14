@@ -65,13 +65,11 @@ public class n1697_2 {
                 visited[2*n] = visited[n] + 1;
                 que.add(2*n);
             }
-            Iterator iter = que.iterator();
-            System.out.print("[");
-            while(iter.hasNext()) {
-                System.out.print(iter.next()+",");
+
+            for(int i=0; i<30; i++) {
+                System.out.print(visited[i]+",");
             }
-            System.out.println("]");
-            System.out.println( Arrays.toString(visited));
+            System.out.println();
         }
 
     }

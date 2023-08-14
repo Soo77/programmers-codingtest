@@ -36,8 +36,10 @@ public class n12851 {
 
         while(!que.isEmpty()) {
             int pos = que.poll();
+            System.out.println("pos:"+pos);
 
             if(result < visited[pos]) {
+                System.out.println("result:"+result+", visited[pos]:"+visited[pos]+"이때 리턴");
                 return;
             }
             if(visited[pos] <= result && pos == K) {
@@ -53,7 +55,7 @@ public class n12851 {
                     next = pos + dx[i];
                 }
 
-                System.out.println("next:"+next+", pos:"+pos);
+                ////System.out.println("next:"+next+", pos:"+pos);
                 if(next >= 0 && next < 100001) {
                     if(visited[next] == 0 || visited[next] >= visited[pos] + 1) {
                         visited[next] = visited[pos] + 1;
@@ -61,6 +63,7 @@ public class n12851 {
                     }
                 }
             }
+            System.out.println("next:"+pos);
         }
 
     }
