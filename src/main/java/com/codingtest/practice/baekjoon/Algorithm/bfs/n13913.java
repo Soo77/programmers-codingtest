@@ -4,6 +4,7 @@ package com.codingtest.practice.baekjoon.Algorithm.bfs;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 // 숨바꼭질4
@@ -23,6 +24,22 @@ public class n13913 {
         K = Integer.parseInt(st.nextToken()); // 동생
 
         bfs();
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(K);
+        int index = K;
+
+        while(index != N) {
+            stack.push(parent[index]);
+            index = parent[index];
+        }
+
+        System.out.println(time[K] - 1);
+        while(!stack.isEmpty()) {
+            System.out.print(stack.pop()+ " ");
+        }
+
+
 
     }
 
@@ -52,9 +69,6 @@ public class n13913 {
                     parent[next] = now;
                 }
             }
-
-
-
         }
 
     }
