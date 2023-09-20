@@ -89,7 +89,7 @@ public class n2468 {
                 }
             }
 
-            //visited = new boolean[N+1][N+1];
+            //visited = new boolean[R+1][R+1];
         }
     }
 

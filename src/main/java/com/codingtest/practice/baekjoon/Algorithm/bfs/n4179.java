@@ -1,3 +1,5 @@
+package com.codingtest.practice.baekjoon.Algorithm.bfs;
+
 import java.io.*;
 import java.util.*;
 

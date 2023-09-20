@@ -43,7 +43,7 @@ public class n5427 {
 						x=i;
 						y=j;
 					}
-					// 여기 아니고 q.add(new int[]{x,y});
+					// 여기 아니고 sq.add(new int[]{x,y});
 				}
 			}
 			q.add(new int[]{x,y});//여기임
@@ -70,7 +70,7 @@ public class n5427 {
 
 					if(nx<0 || nx>=N || ny<0 || ny>=M) {
 						if(map[x][y] == '@') {
-							//q.add(new int[]{x,y});
+							//sq.add(new int[]{x,y});
 							return true;
 						}
 						continue;
