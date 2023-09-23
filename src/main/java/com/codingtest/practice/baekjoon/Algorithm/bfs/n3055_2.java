@@ -80,6 +80,7 @@ public class n3055_2 {
 							ans = Math.min(ans, time+1);
 							return;
 						} else if(map[nx][ny] == '.') {
+							map[nx][ny] = 'S';
 							sq.add(new int[]{nx,ny,time+1});
 						}
 					}
