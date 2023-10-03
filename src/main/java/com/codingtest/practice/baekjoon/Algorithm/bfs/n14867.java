@@ -1,10 +1,7 @@
 package com.codingtest.practice.baekjoon.Algorithm.bfs;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 // 물통
 /*
@@ -32,6 +29,11 @@ public class n14867 {
 
 		int res = bfs();
 		System.out.println(res);
+
+		/*Pair p = new Pair(0,10,3);
+		Pair p2 = new Pair(1,3,3);
+		System.out.println(p);
+		System.out.println(p2);*/
 
 	}
 
@@ -136,6 +138,29 @@ public class n14867 {
 			this.b = b;
 			this.cnt = cnt;
 		}
+
+		/* equals()를 오버라이딩 하면 hashCode()도 같이 오버라이딩해야한다.
+		* equals()의 결과가 true인 두 객체의 해시코드는 같아야하기 때문.
+		* */
+		@Override
+		public boolean equals(Object o) {
+			Pair p = (Pair) o;
+
+			return (p.a == this.a && p.b == this.b);
+		}
+
+		@Override
+		public int hashCode() {
+			return (""+a+b).hashCode();
+		}
+
+		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
+		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
+		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
+
+		/* com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
+		com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@5d624da6
+		*/
 
 
 	}
