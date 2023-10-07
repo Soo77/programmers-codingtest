@@ -3,14 +3,7 @@ package com.codingtest.practice.baekjoon.Algorithm.bfs;
 import java.io.*;
 import java.util.*;
 
-// 물통
-/*
-* 용량이 다른 두 개의 빈 물통 A, B가 있다.
-* 이 물통들에 물을 채우고 비우는 일을 반복하여 두 물통을 원하는 상태(목표하는 양의 물을 담은 상태)
-* 가 되도록 만들고자 한다. 물통 이외에는 물의 양을 정확히 잴 수 있는 방법이 없으며
-* 가능한 작업은 다음과 같은 세 종류가 전부이다.
-* */
-public class n14867 {
+public class n14867_submit {
 
 	static int A, B, resultA, resultB;
 
@@ -30,17 +23,9 @@ public class n14867 {
 		int res = bfs();
 		System.out.println(res);
 
-		/*Pair p = new Pair(0,10,3);
-		Pair p2 = new Pair(1,3,3);
-		System.out.println(p);
-		System.out.println(p2);*/
 
 	}
 
-	public static class Test {
-		int a;
-		int b;
-	}
 
 	private static int bfs() {
 		Queue<Pair> q = new LinkedList<>();
@@ -144,47 +129,40 @@ public class n14867 {
 			this.cnt = cnt;
 		}
 
-		/* equals()를 오버라이딩 하면 hashCode()도 같이 오버라이딩해야한다.
-		* equals()의 결과가 true인 두 객체의 해시코드는 같아야하기 때문.
-		* */
 		@Override
 		public boolean equals(Object o) {
 			Pair p = (Pair) o;
-
-			return (p.a == this.a && p.b == this.b);
+			boolean result = (p.a == this.a && p.b == this.b);
+			System.out.println("equals함수에서 Pair 객체 출력 >> "+p.toString() + ", result:"+result);
+			return result;
 		}
-
-		/*@Override
-		public int hashCode() {
-			return (""+a+b).hashCode();
-		}*/
-
-		/*@Override
-		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (o == null || getClass() != o.getClass()) return false;
-			Pair pair = (Pair) o;
-			return a == pair.a &&
-					b == pair.b &&
-					cnt == pair.cnt;
-		}*/
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(a, b);
+			int result = Objects.hash(a, b);
+			System.out.println("hash("+a+","+b+ ") >> "+result);
+			return result;
 		}
 
-		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
-		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
-		//com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
+		@Override
+		public String toString() {
+			return "Pair{" +
+					"a=" + a +
+					", b=" + b +
+					", cnt=" + cnt +
+					'}';
+		}
 
-		/* com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@2ef9b8bc
-		com.codingtest.practice.baekjoon.Algorithm.bfs.n14867$Pair@5d624da6
-		*/
-
+		/*
+		* hash(0,0) >> 961
+hash(3,0) >> 1054
+hash(3,0) >> 1054
+hash(0,5) >> 966
+hash(0,5) >> 966
+hash(0,0) >> 961
+		* */
 
 
 	}
-
 }
 
