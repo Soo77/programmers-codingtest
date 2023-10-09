@@ -8,7 +8,7 @@ import java.util.*;
 public class n1525 {
 
     static String correct = "123456780";
-    static Map<String, Integer> map = new LinkedHashMap<>();
+    static Map<String,Integer> map = new HashMap<>();
     static int[] dx = {-1,1,0,0};
     static int[] dy = {0,0,1,-1};
 
@@ -16,9 +16,9 @@ public class n1525 {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st;
+        StringTokenizer st=null;
 
-        String init = "";
+        String init ="";
         for(int i=0; i<3; i++) {
             st = new StringTokenizer(br.readLine());
             for(int j=0; j<3; j++) {
@@ -28,10 +28,9 @@ public class n1525 {
         }
 
         map.put(init,0);
-        System.out.println(bfs(init));
-
-
-
+        bw.write(bfs(init)+"");
+        bw.flush();
+        bw.close();
     }
 
     private static int bfs(String init) {
@@ -53,12 +52,12 @@ public class n1525 {
                 int nx = px + dx[i];
                 int ny = py + dy[i];
 
-                if(nx <0 || ny <0 || nx >2 || ny>2) continue;
+                if(nx<0 || ny<0 || nx>2 || ny>2) continue;
 
                 int nPos = nx*3 + ny;
                 char ch = pos.charAt(nPos);
                 String next = pos.replace(ch,'c');
-                next = next.replace('0', ch);
+                next = next.replace('0',ch);
                 next = next.replace('c', '0');
 
                 if(!map.containsKey(next)) {

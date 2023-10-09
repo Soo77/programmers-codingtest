@@ -96,7 +96,7 @@ public class n14867 {
 				}
 			}
 
-			// M(b,a)
+			// N(b,a)
 			if(a+b <= A) {
 				Pair p = new Pair(a+b, 0, cnt+1);
 
@@ -113,7 +113,7 @@ public class n14867 {
 				}
 			}
 
-			// M(a,b)
+			// N(a,b)
 			if(a+b <= B) {
 				Pair p = new Pair(0, a+b, cnt+1);
 
