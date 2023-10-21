@@ -10,12 +10,11 @@ class Trade {
     int num;
     int cnt;
 
-    public Trade(int num, int cnt) {
+    Trade(int num, int cnt) {
         this.num = num;
         this.cnt = cnt;
     }
 }
-
 public class n1039 {
 
     static int N,K;
@@ -31,12 +30,14 @@ public class n1039 {
         K = Integer.parseInt(st.nextToken());
 
         bfs();
-        System.out.println(result);
+        bw.write(result+"");
+        bw.flush();
+        bw.close();
     }
 
-    public static void bfs() {
+    private static void bfs() {
         Queue<Trade> q = new LinkedList<>();
-        boolean[][] visited = new boolean[1_000_001][K+1];
+        boolean[][] visited = new boolean[1000001][K+1];
 
         q.add(new Trade(N,0));
         visited[N][0] = true;
@@ -44,40 +45,32 @@ public class n1039 {
         while(!q.isEmpty()) {
             Trade t = q.poll();
 
-            if(t.cnt == K ) {
+            if(t.cnt == K) {
                 result = Math.max(result, t.num);
                 continue;
             }
 
-            int len = String.valueOf(N).length();
-            System.out.println("len:"+len);
+            int len = String.valueOf(t.num).length();
 
             for(int i=0; i<len-1; i++) {
                 for(int j=i+1; j<len; j++) {
-                    System.out.println("i:"+i+", j:"+j);
-                    int next = swap(t.num, i, j);
-                    
-                    if(next != -1 && !visited[next][t.cnt + 1]) {
+                    int next = swap(t.num, i,j);
+
+                    if(next != -1 && !visited[next][t.cnt+1]) {
                         q.add(new Trade(next, t.cnt+1));
                         visited[next][t.cnt+1] = true;
                     }
                 }
             }
         }
-
-
     }
 
-    private static int swap(int n, int i, int j) {
-        char[] numArr = String.valueOf(n).toCharArray();
-        System.out.println("numArr:"+ Arrays.toString(numArr));
+    private static int swap(int num, int i, int j) {
+        char[] numArr = (num+"").toCharArray();
 
-        if(i==0 && numArr[j] == '0') {
-            return -1;
-        }
+        if(i==0 && numArr[j]=='0') return -1;
 
-        char tmp;
-        tmp = numArr[i];
+        char tmp = numArr[i];
         numArr[i] = numArr[j];
         numArr[j] = tmp;
 

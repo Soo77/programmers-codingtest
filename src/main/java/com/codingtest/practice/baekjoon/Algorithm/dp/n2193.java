@@ -1,22 +1,23 @@
 package com.codingtest.practice.baekjoon.Algorithm.dp;
 
 import java.io.*;
-import java.util.*;
 
-public class Main {
+public class n2193 {
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-  long N = Long.parseLong(br.readLine());
-  if(N%2==0) {
-   bw.write("CY");
-  } else {
-   bw.write("SK");
-  }
-  bw.flush();
-  bw.close();
+
+        int n = Integer.parseInt(br.readLine());
+
+        long arr[] = new long[n+1];
+
+		arr[0] = 0;
+		arr[1] =  1;
+        for(int i=2; i<=n; i++) {
+			arr[i] = arr[i-1] + arr[i-2];
+		}
+		System.out.println(arr[n]);
     }
 }
