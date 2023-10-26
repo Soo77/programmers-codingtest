@@ -1,5 +1,6 @@
+package com.codingtest.practice.baekjoon.Algorithm.dp;
+
 import java.io.*;
-import java.util.*;
 
 public class n1904 {
 
