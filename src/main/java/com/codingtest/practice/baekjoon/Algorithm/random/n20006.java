@@ -46,6 +46,7 @@ public class n20006 {
 			System.out.println("룸새로만듦");
 			ArrayList<Player> room = new ArrayList<>();
 			if(!players[i].check) {
+
 				for(int j=i; j<p; j++) {
 					System.out.println("i:"+i+",j:"+j);
 					if(room.size() == m) {
